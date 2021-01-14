@@ -1,0 +1,353 @@
+{
+  "id": "ADISON-0055-7963",
+  "title": "Table Title",
+  "creationDate": "2020-12-28T19:25:00.000Z",
+  "lastModified": null,
+  "filterBy": { "column": null, "order": "ASC" },
+  "currentPage": 1,
+  "preferences": {
+    "paginateRows": true,
+    "pageRowLimit": 10
+  },
+  "activeCell": {
+    "column": null,
+    "cell": null
+  },
+  "editHistory": [],
+  "columns": [
+    {
+      "id": 1,
+      "header": "Name",
+      "format": "text",
+      "textAlign": "left",
+      "order": 1,
+      "editable": true,
+      "cells": [
+        { "id": 1, "value": "Kate Spade" },
+        { "id": 2, "value": "John Doe" },
+        { "id": 3, "value": "Adison P." },
+        { "id": 4, "value": "Gary D." },
+        { "id": 5, "value": "Benjy Pock" },
+        { "id": 6, "value": "Loreen Tupper" },
+        { "id": 7, "value": "Heidi Yair" },
+        { "id": 8, "value": "Amble Gossington" },
+        { "id": 9, "value": "Carie Retchford" },
+        { "id": 10, "value": "Natale Mabb" },
+        { "id": 11, "value": "Sarita Dethloff" },
+        { "id": 12, "value": "Harlen Ewer" },
+        { "id": 13, "value": "Vanny Siege" },
+        { "id": 14, "value": "Micah Theobalds" },
+        { "id": 15, "value": "Merissa MacPaik" },
+        { "id": 16, "value": "Lucia Robles" },
+        { "id": 17, "value": "Cosetta Dundendale" },
+        { "id": 18, "value": "Raddie Gobat" },
+        { "id": 19, "value": "Gwenneth McPeake" },
+        { "id": 20, "value": "Maynord Palmer" }
+      ]
+    }, 
+    {
+      "id": 2,
+      "header": "Age",
+      "format": "number",
+      "textAlign": "center",
+      "order": 2,
+      "editable": true,
+      "cells": [
+        { "id": 1, "value": 38 },
+        { "id": 2, "value": 45 },
+        { "id": 3, "value": 27 },
+        { "id": 4, "value": 27 },
+        { "id": 5, "value": 25 },
+        { "id": 6, "value": 29 },
+        { "id": 7, "value": 21 },
+        { "id": 8, "value": 43 },
+        { "id": 9, "value": 36 },
+        { "id": 10, "value": 53 },
+        { "id": 11, "value": 22 },
+        { "id": 12, "value": 28 },
+        { "id": 13, "value": 24 },
+        { "id": 14, "value": 36 },
+        { "id": 15,"value": 52 },
+        { "id": 16, "value": 41 },
+        { "id": 17, "value": 19 },
+        { "id": 18, "value": 26 },
+        { "id": 19, "value": 42 },
+        { "id": 20, "value": 38 }
+      ]
+    }, 
+    {
+      "id": 3,
+      "header": "Gender",
+      "format": "text",
+      "textAlign": "center",
+      "order": 3,
+      "editable": true,
+      "cells": [
+        { "id": 1, "value": "Female" },
+        { "id": 2, "value": "Male" },
+        { "id": 3, "value": "Male" },
+        { "id": 4, "value": "Male" },
+        { "id": 5, "value": "Male" },
+        { "id": 6, "value": "Female" },
+        { "id": 7, "value": "Female" },
+        { "id": 8, "value": "Male" },
+        { "id": 9, "value": "Female" },
+        { "id": 10, "value": "Male" },
+        { "id": 11, "value": "Female" },
+        { "id": 12, "value": "Male" },
+        { "id": 13, "value": "Female"  },
+        { "id": 14, "value": "Male" },
+        { "id": 15, "value": "Female" },
+        { "id": 16, "value": "Female" },
+        { "id": 17, "value": "Female" },
+        { "id": 18, "value": "Male" },
+        { "id": 19, "value": "Female" },
+        { "id": 20, "value": "Male" }
+      ]
+    }, 
+    {
+      "id": 4,
+      "header": "Email",
+      "format": "email",
+      "textAlign": "left",
+      "order": 4,
+      "editable": true,
+      "cells": [
+        { "id": 1, "value": "hill.lauryn@aol.co" },
+        { "id": 2, "value": "doetoe_joe@verizon.net" },
+        { "id": 3, "value": "hirayoki.nova@gmail.com" },
+        { "id": 4, "value": "gary.cruz@gmail.com" },
+        { "id": 5, "value": "bpock0@yellowbook.com" },
+        { "id": 6, "value": "ltupper1@mit.edu" },
+        { "id": 7, "value": "hyair9@indiegogo.com" },
+        { "id": 8, "value": "agossingtonb@google.ca" },
+        { "id": 9, "value": "cretchfordc@ca.gov" },
+        { "id": 10, "value": "nmabbd@wiley.com" },
+        { "id": 11, "value": "sdethloffe@yolasite.com" },
+        { "id": 12, "value": "hewerq@buzzfeed.com" },
+        { "id": 13, "value": "vsiege3@deliciousdays.com" },
+        { "id": 14, "value": "mtheobalds0@sogou.com" },
+        { "id": 15, "value": "mmacpaik6@wired.com" },
+        { "id": 16, "value": "mmacpaik6@wired.com" },
+        { "id": 17, "value": "cdundendale0@ftc.gov" },
+        { "id": 18, "value": "rgobat1@jimdo.com" },
+        { "id": 19, "value": "gmcpeake2@hexun.com" },
+        { "id": 20, "value": "mpalmer3@goo.ne.jp" }
+      ]
+    }, 
+    {
+      "id": 5,
+      "header": "Driver's License",
+      "format": "boolean",
+      "textAlign": "center",
+      "order": 5,
+      "editable": true,
+      "cells": [
+        { "id": 1, "value": true },
+        { "id": 2,"value": true },
+        { "id": 3, "value": false },
+        { "id": 4, "value": true },
+        { "id": 5, "value": true },
+        { "id": 6, "value": false },
+        { "id": 7, "value": true },
+        { "id": 8, "value": true },
+        { "id": 9, "value": true },
+        { "id": 10,  "value": true },
+        { "id": 11, "value": false },
+        { "id": 12, "value": true },
+        { "id": 13, "value": true },
+        {"id": 14, "value": true },
+        { "id": 15, "value": true },
+        { "id": 16, "value": true },
+        { "id": 17, "value": false },
+        { "id": 18, "value": true },
+        { "id": 19, "value": false },
+        { "id": 20, "value": true }
+      ]
+    }, 
+    {
+      "id": 6,
+      "header": "Hired Date",
+      "format": "datetime",
+      "textAlign": "right",
+      "order": 6,
+      "editable": true,
+      "cells": [{
+          "id": 1,
+          "value": "2020-11-27T04:00:00.000Z"
+        },
+        {
+          "id": 2,
+          "value": "2016-06-08T04:00:00.000Z"
+        },
+        {
+          "id": 3,
+          "value": "2018-08-01T04:00:00.000Z"
+        },
+        {
+          "id": 4,
+          "value": "2017-02-22T04:00:00.000Z"
+        },
+        {
+          "id": 5,
+          "value": "2013-05-16T04:00:00.000Z"
+        },
+        {
+          "id": 6,
+          "value": "2020-11-21T04:00:00.000Z"
+        },
+        {
+          "id": 7,
+          "value": "2018-02-12T04:00:00.000Z"
+        },
+        {
+          "id": 8,
+          "value": "2016-06-06T04:00:00.000Z"
+        },
+        {
+          "id": 9,
+          "value": "2018-08-08T04:00:00.000Z"
+        },
+        {
+          "id": 10,
+          "value": "2014-01-15T04:00:00.000Z"
+        },
+        {
+          "id": 11,
+          "value": "2020-07-16T04:00:00.000Z"
+        },
+        {
+          "id": 12,
+          "value": "2014-05-25T04:00:00.000Z"
+        },
+        {
+          "id": 13,
+          "value": "2015-12-03T04:00:00.000Z"
+        },
+        {
+          "id": 14,
+          "value": "2014-01-16T04:00:00.000Z"
+        },
+        {
+          "id": 15,
+          "value": "2017-09-26T04:00:00.000Z"
+        },
+        {
+          "id": 16,
+          "value": "2020-02-05T04:00:00.000Z"
+        },
+        { "id": 17, "value": "2020-05-05T04:00:00.000Z" },
+        { "id": 18, "value": "2015-06-05T04:00:00.000Z" },
+        { "id": 19, "value": "2019-01-05T04:00:00.000Z" },
+        { "id": 20, "value": "2016-09-05T04:00:00.000Z" }
+      ]
+    }, 
+    {
+      "id": 7,
+      "header": "Country",
+      "format": "text",
+      "textAlign": "right",
+      "order": 7,
+      "editable": true,
+      "cells": [{
+          "id": 1,
+          "value": "United States"
+        },
+        {
+          "id": 2,
+          "value": "United States"
+        },
+        {
+          "id": 3,
+          "value": "Dominican Republic"
+        },
+        {
+          "id": 4,
+          "value": "United States"
+        },
+        {
+          "id": 5,
+          "value": "Germany"
+        },
+        {
+          "id": 6,
+          "value": "United Kingdom"
+        },
+        {
+          "id": 7,
+          "value": "United States"
+        },
+        {
+          "id": 8,
+          "value": "Netherlands"
+        },
+        {
+          "id": 9,
+          "value": "United States"
+        },
+        {
+          "id": 10,
+          "value": "Poland"
+        },
+        {
+          "id": 11,
+          "value": "Kenya"
+        },
+        {
+          "id": 12,
+          "value": "Australia"
+        },
+        {
+          "id": 13,
+          "value": "United States"
+        },
+        {
+          "id": 14,
+          "value": "United States"
+        },
+        {
+          "id": 15,
+          "value": "Greece"
+        },
+        {
+          "id": 16,
+          "value": "Spain"
+        },
+        { "id": 17, "value": "United States" },
+        { "id": 18, "value": "Australia" },
+        { "id": 19, "value": "Belgium" },
+        { "id": 20, "value": "Netherlands" }
+      ]
+    },
+    {
+      "id": 8,
+      "header": "Monthly Income",
+      "format": "money-usd",
+      "textAlign": "right",
+      "order": 8,
+      "editable": true,
+      "cells": [
+        { "id": 1, "value": 650 },
+        { "id": 2, "value": 1230 },
+        { "id": 3, "value": 2640.51 },
+        { "id": 4, "value": 496 },
+        { "id": 5, "value": 800.96},
+        { "id": 6, "value": 1780 },
+        { "id": 7, "value": 2333 },
+        { "id": 8, "value": 5649 },
+        { "id": 9, "value": 1206.44 },
+        { "id": 10, "value": 978 },
+        { "id": 11, "value": 1105 },
+        { "id": 12, "value": 923.44 },
+        { "id": 13, "value": 465 },
+        { "id": 14, "value": 705 },
+        { "id": 15, "value": 1640 },
+        { "id": 16, "value": 3540 },
+        { "id": 17, "value": 5662 },
+        { "id": 18, "value": 4776 },
+        { "id": 19, "value": 1222 },
+        { "id": 20, "value": 747 }
+      ]
+    }
+  ]
+}
