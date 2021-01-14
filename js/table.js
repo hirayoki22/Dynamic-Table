@@ -7,7 +7,7 @@ import { Popup } from './popup.js';
 export class Table {
   tableForm = new TableForm();
   calendar = new Calendar();
-  popup = new Popup();
+  popup = new Popup({});
   isEditing = false;
 
   constructor(tableSheet) {
@@ -65,8 +65,8 @@ export class Table {
   }
   
   getTable(tableSheet) {
-    if (localStorage.getItem('super-table')) {
-      this.tableSheet = JSON.parse(localStorage.getItem('super-table'));
+    if (localStorage.getItem('dynamic-table')) {
+      this.tableSheet = JSON.parse(localStorage.getItem('dynamic-table'));
       console.log('-- Table initialized from Local Storage --');
     }
     else if (tableSheet) {
@@ -94,86 +94,9 @@ export class Table {
     this.paginationArea.addEventListener('click', e => this.onPageNavClick(e.target));
   }
 
-  onMouseDown(e) {
-    if ((!e.target.classList.contains('header') && 
-      e.target.tagName !== 'SPAN') || e.button == 2) {
-      return;
-    }
-
-    let header = e.target.closest('.header');
-    let placeholder = document.createElement('div');
-    let shiftX = e.clientX - header.offsetLeft;
-    let isDraggingStarted = false;
-
-    const mouseMoveHandler = e => {
-      let prevHeader = header.previousElementSibling;
-      let nextHeader = placeholder.nextElementSibling;
-      let posX = e.clientX - shiftX;
-      let widthDiff = this.thead.clientWidth - header.clientWidth;
-      let left = (posX > widthDiff) ? widthDiff : (posX < 0) ? 0 : posX;
-    
-      header.setAttribute('dragging', '');
-      placeholder.classList.add('placeholder');
-      header.style.left = `${left}px`; 
-
-      if (!isDraggingStarted) {
-        isDraggingStarted = true;
-        this.thead.insertBefore(placeholder, header.nextSibling);
-      }
-      
-      if (prevHeader && isAbove(header, prevHeader)) {
-        swap(placeholder, header);
-        swap(placeholder, prevHeader);
-      }
-    
-      if (nextHeader && isAbove(nextHeader, header)) {
-        swap(nextHeader, placeholder);
-        swap(nextHeader, header);
-      }
-    };
-
-    const swap = (nodeA, nodeB) => {
-      let siblingA = nodeA.nextSibling == nodeB ? nodeA : nodeA.nextSibling;
-
-      this.thead.insertBefore(nodeA, nodeB);
-      this.thead.insertBefore(nodeB, siblingA);
-    };
-    
-    const isAbove = (nodeA, nodeB) => {
-      let rectA = nodeA.getBoundingClientRect();
-      let rectB = nodeB.getBoundingClientRect();
-    
-      return (rectA.left + rectA.width / 2 < rectB.left + rectB.width);
-    };
-
-    const saveNewOrder = () => {
-      [...this.thead.children].forEach((header, i) => {
-        let column = this.columns.find(col => col.id === +header.dataset.colId);
-        column.order = i + 1;
-      });
-
-      this.columns.sort((a, b) => a.order - b.order);
-      this.renderCells();
-      this.saveToLocalStorage();
-    }
-
-    const mouseUpHandler = () => {
-      /** Without accounting for animations */
-      document.onmousemove = null;
-      document.onmouseup = null;
-      placeholder?.remove();
-      header.removeAttribute('style');
-      header.removeAttribute('dragging');
-      saveNewOrder();      
-    };
-
-    document.onmousemove = e => mouseMoveHandler(e);
-    document.onmouseup = () => mouseUpHandler();
-  }
-
   saveToLocalStorage() {
     this.tableSheet.lastModified = new Date();
-    localStorage.setItem('super-table', JSON.stringify(this.tableSheet));
+    localStorage.setItem('dynamic-table', JSON.stringify(this.tableSheet));
   }
 
   renderTable() {
@@ -390,6 +313,83 @@ export class Table {
       
       this.sortColumn(colId, order);
     }
+  }
+
+  onMouseDown(e) {
+    if ((!e.target.classList.contains('header') && 
+      e.target.tagName !== 'SPAN') || e.button == 2) {
+      return;
+    }
+
+    let header = e.target.closest('.header');
+    let placeholder = document.createElement('div');
+    let shiftX = e.clientX - header.offsetLeft;
+    let isDraggingStarted = false;
+
+    const mouseMoveHandler = e => {
+      let prevHeader = header.previousElementSibling;
+      let nextHeader = placeholder.nextElementSibling;
+      let posX = e.clientX - shiftX;
+      let widthDiff = this.thead.clientWidth - header.clientWidth;
+      let left = (posX > widthDiff) ? widthDiff : (posX < 0) ? 0 : posX;
+    
+      header.setAttribute('dragging', '');
+      placeholder.classList.add('placeholder');
+      header.style.left = `${left}px`; 
+
+      if (!isDraggingStarted) {
+        isDraggingStarted = true;
+        this.thead.insertBefore(placeholder, header.nextSibling);
+      }
+      
+      if (prevHeader && isAbove(header, prevHeader)) {
+        swap(placeholder, header);
+        swap(placeholder, prevHeader);
+      }
+    
+      if (nextHeader && isAbove(nextHeader, header)) {
+        swap(nextHeader, placeholder);
+        swap(nextHeader, header);
+      }
+    };
+
+    const swap = (nodeA, nodeB) => {
+      let siblingA = nodeA.nextSibling == nodeB ? nodeA : nodeA.nextSibling;
+
+      this.thead.insertBefore(nodeA, nodeB);
+      this.thead.insertBefore(nodeB, siblingA);
+    };
+    
+    const isAbove = (nodeA, nodeB) => {
+      let rectA = nodeA.getBoundingClientRect();
+      let rectB = nodeB.getBoundingClientRect();
+    
+      return (rectA.left + rectA.width / 2 < rectB.left + rectB.width);
+    };
+
+    const saveNewOrder = () => {
+      [...this.thead.children].forEach((header, i) => {
+        let column = this.columns.find(col => col.id === +header.dataset.colId);
+        column.order = i + 1;
+      });
+
+      this.columns.sort((a, b) => a.order - b.order);
+      this.renderCells();
+      this.saveToLocalStorage();
+    }
+
+    const mouseUpHandler = () => {
+      /** Without accounting for animations */
+      document.onmousemove = null;
+      document.onmouseup = null;
+      placeholder?.remove();
+      header.removeAttribute('style');
+      header.removeAttribute('dragging');
+      saveNewOrder();      
+    };
+
+    document.onmousemove = e => mouseMoveHandler(e);
+    document.onmouseup = () => mouseUpHandler();
   }
 
   onLinkClick(e) {
@@ -879,6 +879,5 @@ export class Table {
 
     link.click();
     link.remove();
-    console.log(this.records);
   }
 }

@@ -1,7 +1,9 @@
 export class Popup {
-  title = 'Default Title';
-
-  constructor() { }
+  constructor({ title, btn1Label, btn2Label }) { 
+    this.title = title || 'Default Title';
+    this.btn1Label = btn1Label || 'Cancel';
+    this.btn2Label = btn2Label || 'Confirm';
+  }
 
   initOverlay() {
     this.overlay = document.createElement('div');
@@ -12,8 +14,8 @@ export class Popup {
     this.popup.innerHTML = `
     <h3>${this.title}</h3>
     <div class="action-btns">
-      <button type="button" data-cancel>Cancel</button>
-      <button type="button" data-confirm>Confirm</button>
+      <button type="button" data-cancel>${this.btn1Label}</button>
+      <button type="button" data-confirm>${this.btn2Label}</button>
     </div>`;
     this.actionBtns = this.popup.querySelector('.action-btns');
     this.overlay.append(this.popup);

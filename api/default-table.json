@@ -1,5 +1,5 @@
 {
-  "id": "ADISON-0055-7963",
+  "id": "RQXST-0055-7963",
   "title": "Table Title",
   "creationDate": "2020-12-28T19:25:00.000Z",
   "lastModified": null,
@@ -172,70 +172,23 @@
       "textAlign": "right",
       "order": 6,
       "editable": true,
-      "cells": [{
-          "id": 1,
-          "value": "2020-11-27T04:00:00.000Z"
-        },
-        {
-          "id": 2,
-          "value": "2016-06-08T04:00:00.000Z"
-        },
-        {
-          "id": 3,
-          "value": "2018-08-01T04:00:00.000Z"
-        },
-        {
-          "id": 4,
-          "value": "2017-02-22T04:00:00.000Z"
-        },
-        {
-          "id": 5,
-          "value": "2013-05-16T04:00:00.000Z"
-        },
-        {
-          "id": 6,
-          "value": "2020-11-21T04:00:00.000Z"
-        },
-        {
-          "id": 7,
-          "value": "2018-02-12T04:00:00.000Z"
-        },
-        {
-          "id": 8,
-          "value": "2016-06-06T04:00:00.000Z"
-        },
-        {
-          "id": 9,
-          "value": "2018-08-08T04:00:00.000Z"
-        },
-        {
-          "id": 10,
-          "value": "2014-01-15T04:00:00.000Z"
-        },
-        {
-          "id": 11,
-          "value": "2020-07-16T04:00:00.000Z"
-        },
-        {
-          "id": 12,
-          "value": "2014-05-25T04:00:00.000Z"
-        },
-        {
-          "id": 13,
-          "value": "2015-12-03T04:00:00.000Z"
-        },
-        {
-          "id": 14,
-          "value": "2014-01-16T04:00:00.000Z"
-        },
-        {
-          "id": 15,
-          "value": "2017-09-26T04:00:00.000Z"
-        },
-        {
-          "id": 16,
-          "value": "2020-02-05T04:00:00.000Z"
-        },
+      "cells": [
+        { "id": 1, "value": "2020-11-27T04:00:00.000Z" },
+        { "id": 2, "value": "2016-06-08T04:00:00.000Z" },
+        { "id": 3, "value": "2018-08-01T04:00:00.000Z" },
+        { "id": 4, "value": "2017-02-22T04:00:00.000Z" },
+        { "id": 5, "value": "2013-05-16T04:00:00.000Z" },
+        { "id": 6, "value": "2020-11-21T04:00:00.000Z" },
+        { "id": 7, "value": "2018-02-12T04:00:00.000Z" },
+        { "id": 8,  "value": "2016-06-06T04:00:00.000Z" },
+        { "id": 9, "value": "2018-08-08T04:00:00.000Z" },
+        { "id": 10, "value": "2014-01-15T04:00:00.000Z" },
+        { "id": 11, "value": "2020-07-16T04:00:00.000Z" },
+        { "id": 12, "value": "2014-05-25T04:00:00.000Z" },
+        { "id": 13, "value": "2015-12-03T04:00:00.000Z" },
+        { "id": 14, "value": "2014-01-16T04:00:00.000Z" },
+        { "id": 15, "value": "2017-09-26T04:00:00.000Z" },
+        { "id": 16,  "value": "2020-02-05T04:00:00.000Z" },
         { "id": 17, "value": "2020-05-05T04:00:00.000Z" },
         { "id": 18, "value": "2015-06-05T04:00:00.000Z" },
         { "id": 19, "value": "2019-01-05T04:00:00.000Z" },
@@ -249,70 +202,23 @@
       "textAlign": "right",
       "order": 7,
       "editable": true,
-      "cells": [{
-          "id": 1,
-          "value": "United States"
-        },
-        {
-          "id": 2,
-          "value": "United States"
-        },
-        {
-          "id": 3,
-          "value": "Dominican Republic"
-        },
-        {
-          "id": 4,
-          "value": "United States"
-        },
-        {
-          "id": 5,
-          "value": "Germany"
-        },
-        {
-          "id": 6,
-          "value": "United Kingdom"
-        },
-        {
-          "id": 7,
-          "value": "United States"
-        },
-        {
-          "id": 8,
-          "value": "Netherlands"
-        },
-        {
-          "id": 9,
-          "value": "United States"
-        },
-        {
-          "id": 10,
-          "value": "Poland"
-        },
-        {
-          "id": 11,
-          "value": "Kenya"
-        },
-        {
-          "id": 12,
-          "value": "Australia"
-        },
-        {
-          "id": 13,
-          "value": "United States"
-        },
-        {
-          "id": 14,
-          "value": "United States"
-        },
-        {
-          "id": 15,
-          "value": "Greece"
-        },
-        {
-          "id": 16,
-          "value": "Spain"
-        },
+      "cells": [
+        { "id": 1,"value": "United States" },
+        { "id": 2, "value": "United States" },
+        { "id": 3, "value": "Dominican Republic" },
+        { "id": 4, "value": "United States" },
+        { "id": 5, "value": "Germany" },
+        { "id": 6, "value": "United Kingdom" },
+        { "id": 7, "value": "United States" },
+        { "id": 8, "value": "Netherlands" },
+        { "id": 9, "value": "United States" },
+        { "id": 10, "value": "Poland" },
+        { "id": 11, "value": "Kenya" },
+        { "id": 12, "value": "Australia" },
+        { "id": 13, "value": "United States" },
+        { "id": 14, "value": "United States" },
+        { "id": 15, "value": "Greece" },
+        { "id": 16, "value": "Spain" },
         { "id": 17, "value": "United States" },
         { "id": 18, "value": "Australia" },
         { "id": 19, "value": "Belgium" },
