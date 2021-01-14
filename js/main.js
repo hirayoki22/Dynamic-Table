@@ -19,9 +19,7 @@ const loadTable = startNew => {
 }
 
 (() => {
-  let save = JSON.parse(localStorage.getItem('dynamic-table'));
-
-  if (!save) {
+  if (!JSON.parse(localStorage.getItem('dynamic-table'))) {
     let popup = new Popup({
       title: 'Hey there, person!',
       btn1Label: 'Load Mockup',
