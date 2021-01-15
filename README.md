@@ -72,10 +72,8 @@ Clicking on the Add Column button will open a modal form where you can choose th
   - Sort Z-A
   - Clear column
   - Remove column
-+ Drag & drop on mouse down to switch the header's position. Will automatically change the entire column's position.
++ Drag & drop on mouse down to enter the dragging state and switch the header's position. Will automatically change the entire column's position un mouse release.
 + Quick sort ASC/DESC a previously sorted column via the quick sort button that will only show up for said column.
-
-> Clear and Remove Column options trigger a popup confirmation to show up.
 
 ## Table cells and rows
 
@@ -98,17 +96,17 @@ Clicking on the Add Row button will enter a new row.
 
 > Edit mode will display a calendar widget on cell's that have a datetime format.
 
-## Pagination buttons
-Has a limit of page numbers that update automatically on on row insertion or delation.
-Next and previous buttons disabled state is automatically updated. 
+## Pagination Area
+Has a limit of 3 numbered buttons that update automatically on on row insertion or delation.
+Next and Previous buttons disabled state is automatically updated to reflect the current page position. 
 
 ## Table Column Form
-This form can be invoked when adding a new column, or modifying an existing one. Contains fields to enter the column header, the text alignment, column format and indicate whether it can be edited.
+Can be invoked when adding a new column, or modifying an existing one. Contains fields to enter the column header, the text alignment, column format and indicate whether it can be edited.
 
 ![Table form](./assets/img/form.jpg)
 
 ## Popup Confirmation
-Pretty self explanatory. Exist only to prevent to validate whether certain actions should proceed.
+Pretty self explanatory. Exists for the purpose of double-checking if the user wishes to proceed with a certain task such as clearing or removing a column or removing a row.
 
 ![Popup confirmation](./assets/img/popup.jpg)
 
