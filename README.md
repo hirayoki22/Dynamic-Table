@@ -93,7 +93,7 @@ Clicking on the Add Row button will enter a new row.
   - During edit mode, `Esc` to cancel edit mode. Cell retains its original value
   - `Ctrl + Z` and `Ctrl + Y` to undo or redo an action
   - Insta-edit mode upon selecting a cell and immediately entering any keyboard character or pasting in a value using `Ctrl + V`
-  - `Del` to instantely delete a cells value 
+  - `Del` to instantly delete a cells value 
 + `Shift + Ctrl + Click` on a cell to select the entire row, and remove the row. Will display a popup confirmation 
 
 > Edit mode will display a calendar widget on cell's that have a datetime format.
