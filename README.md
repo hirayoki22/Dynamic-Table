@@ -1,7 +1,7 @@
-## Overview:
-I made this app as part of little challenge, but then went a bit overboard about it and ended up making it more intricate and complete than it was originally intended.
+## Overview
+This app is a fully dynamic table, that provides the ability to add/modify columns and rows, edit cell values, have typed columns, and several others, and was built using vanilla JS and CSS, no libraries allowed.
 
-The challenge consisted of creating a table that was fully dynamic, with the option to add/modify columns and rows, edit cell values, have typed columns, and several others. Al this would have to be achieved using vanilla JS and CSS, no libraries allowed, and a modern approach using ES6 syntax.
+When launching the app for the first time, a popup confirmation will appear asking whether to load a blank sheet, which starts off with a single column that has a single row, or to load some mockup fake data. This popup will not showup again unless the object dynamic-table entry is removed from Local Storage.
 
 The table uses a very simple data structure:
 
@@ -31,9 +31,9 @@ const SheetModel = {
   ]
 }
 ```
-The ID is there for future expansions, such as adding enabling multiple table sheets, allowing to distinguish them.
+> The ID is there for future expansions, such as adding enabling multiple table sheets, allowing to distinguish them.
 
-## Feature list
+## Functionality and features:
 + Add/modify columns
 + Sort columns DESC/ASC
 + Add/modify rows
@@ -45,11 +45,12 @@ The ID is there for future expansions, such as adding enabling multiple table sh
 + Move and quick edit cells with keyboard
 + Limit total visible rows
 + Dynamic pagination
++ Records/rows count
 + Basic undo/redo system
 + Export records as JSON and CSV format
-+ Save table sheet to local storage
++ Save table sheet to Local Storage
 
-## About the table columns
+## Table columns
 Columns are typed, and the cell values are styled and shown according to their type when rendered on the page, and store as the corresponding column's format when entering new data. It's a quick and easy parsing process that flows both ways.
 
 Clicking on the Add Column button will open a modal form where you can choose the column's header label, type/format, cell text alignment, and where the column is editable or locked. this same form will come up when modifying an existing column, but this time it will proload the current's column properties to make it easier to manage.
@@ -65,15 +66,35 @@ Clicking on the Add Column button will open a modal form where you can choose th
 + **boolean**: displayed as YES/NO
 
 #### Actions:
-+ Open column options menu on right click/context menu. (Menus can be closed on blur and un ESC key press) 
++ Open column options menu on `right click`.
   - Modify Column
   - Sort A-Z
   - Sort Z-A
   - Clear column
   - Remove column
-+ Drag & drop on mousedown to switch the header's position. Will automatically change the entire column's position.
++ Drag & drop on mouse down to switch the header's position. Will automatically change the entire column's position.
 + Quick sort ASC/DESC a previously sorted column via the quick sort button that will only show up for said column.
 
-**Note:** Clear and Remove Column options trigger a popup confirmation to show up.
+> Clear and Remove Column options trigger a popup confirmation to show up.
 
-_More to come... :D_
+## Table cells and rows
+
+All cells display their value based on the column's format, text alignment, editable/lock state, and several other factors. Cells that show the value of URLs and emails will be able to perform certain actions on `Ctrl + Click`. Links will be opened on a new tab, and emails will take the user to their default mail client app.
+
+Clicking on the Add Row button will enter a new row.
+
+#### Actions:
++ `Left click` to select/highlight a cell. 
++ Double click to enter edit mode. The entered value will rendered according to the cells' column format.
++ Key up and down after selecting a cell
+  - `Up/down` and `left/right` to navigate through the cells
+  - `F2` and `Enter` to enter edit mode
+  - `Ctrl + Z` and `Ctrl + Y` to undo or redo an action
+  - Insta-edit mode upon selecting a cell and immediately entering any keyboard character or pasting in a value using `Ctrl + V`
+  - `Del` to instantely delete a cells value 
++ `Shift + Ctrl + Click` on a cell to select the entire row, and remove the row. Will display a popup confirmation 
+
+> Edit mode will display a calendar widget on cell's that have a datetime format.
+
+
+All modals and be exited on `Esc` key press
