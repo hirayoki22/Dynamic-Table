@@ -1,9 +1,7 @@
-# Dyanmic Table
-
 ## Overview:
 I made this app as part of little challenge, but then went a bit overboard about it and ended up making it more intricate and complete than it was originally intended.
 
-The challenge consisted of creating a table that was fully dynamic, with the option to add/modify columns and rows, edit cell values, have typed columns, and several others.
+The challenge consisted of creating a table that was fully dynamic, with the option to add/modify columns and rows, edit cell values, have typed columns, and several others. Al this would have to be achieved using vanilla JS and CSS, no libraries allowed, and a modern approach using ES6 syntax.
 
 The table uses a very simple data structure:
 
