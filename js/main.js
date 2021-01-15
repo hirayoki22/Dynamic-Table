@@ -31,3 +31,30 @@ const loadTable = startNew => {
     loadTable(true);
   }
 })();
+
+let users = [
+  {
+    id: 4578,
+    login: 'hirayki22',
+    active: true
+  },
+  {
+    id: 1466,
+    login: 'markus68',
+    active: true
+  },
+  {
+    id: 8946,
+    login: 'rosemaiden',
+    active: true
+  },
+  {
+    id: 3460,
+    login: 'sephiroth',
+    active: true
+  }
+];
+
+let usersObj = users.reduce((acc, user) => ({...acc, [user.id]: user}), {});
+
+console.log(usersObj);
