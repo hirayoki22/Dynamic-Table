@@ -88,7 +88,9 @@ Clicking on the Add Row button will enter a new row.
 + Double click to enter edit mode. The entered value will rendered according to the cells' column format.
 + Key up and down after selecting a cell
   - `Up/down` and `left/right` to navigate through the cells
-  - `F2` and `Enter` to enter edit mode
+  - `F2` and `Enter` to enter edit mode.
+  - During edit mode, `Enter` to save the new entered value
+  - During edit mode, `Esc` to cancel edit mode. Cell retains its original value
   - `Ctrl + Z` and `Ctrl + Y` to undo or redo an action
   - Insta-edit mode upon selecting a cell and immediately entering any keyboard character or pasting in a value using `Ctrl + V`
   - `Del` to instantely delete a cells value 
@@ -96,5 +98,13 @@ Clicking on the Add Row button will enter a new row.
 
 > Edit mode will display a calendar widget on cell's that have a datetime format.
 
+## Pagination buttons
+...
 
-All modals and be exited on `Esc` key press
+## Table Column Form
+...
+
+## Popup Confirmation
+...
+
+> All modals and be exited on `Esc` key press
