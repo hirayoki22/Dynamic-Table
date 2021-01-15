@@ -99,12 +99,18 @@ Clicking on the Add Row button will enter a new row.
 > Edit mode will display a calendar widget on cell's that have a datetime format.
 
 ## Pagination buttons
-...
+Has a limit of page numbers that update automatically on on row insertion or delation.
+Next and previous buttons disabled state is automatically updated. 
 
 ## Table Column Form
-...
+This form can be invoked when adding a new column, or modifying an existing one. Contains fields to enter the column header, the text alignment, column format and indicate whether it can be edited.
+
+![Table form](./assets/img/form.jpg)
 
 ## Popup Confirmation
-...
+Pretty self explanatory. Exist only to prevent to validate whether certain actions should proceed.
+
+![Popup confirmation](./assets/img/popup.jpg)
 
 > All modals and be exited on `Esc` key press
+
