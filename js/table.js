@@ -227,7 +227,7 @@ export class Table {
   }
 
   parseCellValue(value, format) {
-    const parsed = {
+    let parsed = {
       text: value,
       url: value,
       email: value,
