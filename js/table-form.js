@@ -35,7 +35,7 @@ export class TableForm {
     this.overlay = document.createElement('div');
     this.overlay.className = 'table-overlay';
     this.form = document.createElement('form');
-    this.form.id = 'newcolumn';
+    this.form.id = 'table-form';
 
     let selected = (value, match) => match == value ? 'selected' : '';
 

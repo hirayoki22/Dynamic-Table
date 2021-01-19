@@ -11,7 +11,7 @@ const loadTable = startNew => {
   if (startNew) {
     let table = new Table();
   } else {
-    fetch('./api/default-table.json')
+    fetch('./api/presets.json')
       .then(res => res.json())
       .then(table => new Table(table))
       .catch(err => console.log(err.message));

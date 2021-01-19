@@ -107,7 +107,7 @@ export class Table {
     this.thead.className = 'thead';
     this.tbody.className = 'tbody';
     this.wrapper = document.querySelector('.table-wrapper');
-    this.titleInput = document.querySelector('#table-title');
+    this.titleInput = document.querySelector('.table-title');
     this.bottomContent = this.wrapper.querySelector('.bottom-content');
     this.addColButton = this.wrapper.querySelector('[data-add-column]');
     this.addRowButton = this.wrapper.querySelector('[data-add-row]');
@@ -301,8 +301,6 @@ export class Table {
         remove: () => this.removeColumn(colId)
       }
       actions[action]();      
-
-      console.log(e.target);
     }
   }
 
