@@ -85,7 +85,8 @@ Clicking on the Add Row button will enter a new row.
 + `Left click` to select/highlight a cell. 
 + Double click to enter edit mode. The entered value will rendered according to the cells' column format.
 + Key up and down after selecting a cell
-  - `Up/down` and `left/right` to navigate through the cells
+  - `Up/down/left/right` to navigate through the cells
+  - `Ctrl + Up/down/left/right` to navigate to last/previous cell
   - `F2` and `Enter` to enter edit mode.
   - During edit mode, `Enter` to save the new entered value
   - During edit mode, `Esc` to cancel edit mode. Cell retains its original value
