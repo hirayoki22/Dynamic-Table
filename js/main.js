@@ -6,7 +6,7 @@ import { Popup } from './popup.js';
 * Table is rendered upon initialization
 */
 const loadTable = startNew => {
-  document.querySelector('.table-wrapper').classList.add('active');
+  document.querySelector('.app-container').classList.add('active');
 
   if (startNew) {
     let table = new Table();

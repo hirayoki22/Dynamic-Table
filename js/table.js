@@ -106,18 +106,18 @@ export class Table {
     this.table.className = 'table';
     this.thead.className = 'thead';
     this.tbody.className = 'tbody';
-    this.wrapper = document.querySelector('.table-wrapper');
-    this.titleInput = document.querySelector('.table-title');
-    this.bottomContent = this.wrapper.querySelector('.bottom-content');
-    this.addColButton = this.wrapper.querySelector('[data-add-column]');
-    this.addRowButton = this.wrapper.querySelector('[data-add-row]');
-    this.logButton = this.wrapper.querySelector('[data-records]');
+    this.container = document.querySelector('.app-container');
+    this.titleInput = document.querySelector('.sheet-title');
+    this.bottomContent = this.container.querySelector('.bottom-content');
+    this.addColButton = this.container.querySelector('[data-add-column]');
+    this.addRowButton = this.container.querySelector('[data-add-row]');
+    this.logButton = this.container.querySelector('[data-records]');
     this.paginationArea = document.createElement('section');
 
     this.titleInput.value = this.tableSheet.title;
     this.table.style.height = `calc(32px + 25px * ${this.pageRowLimit})`;
     this.table.append(this.thead, this.tbody);
-    this.wrapper.insertBefore(this.table, this.bottomContent);
+    this.container.insertBefore(this.table, this.bottomContent);
   }
 
   renderHeaders() {
@@ -202,7 +202,7 @@ export class Table {
     this.pageBtns = [...this.paginationArea.querySelectorAll('[data-page]')];
     this.setPaginationButtonsState();
 
-    this.wrapper.querySelector('.bottom-content').append(this.paginationArea);
+    this.container.querySelector('.bottom-content').append(this.paginationArea);
   }
 
   setPaginationButtonsState() {
