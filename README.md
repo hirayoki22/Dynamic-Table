@@ -1,5 +1,5 @@
-## Overview
-Fully dynamic table that provides the ability to add/modify columns and rows, edit cell values, have typed columns, and several others, and was built using vanilla JS and CSS, no libraries allowed.
+# Overview
+This app consists of a dynamic table that provides the ability to add/modify columns and rows, edit cell values, have typed columns, and several others, and was built using vanilla JS and CSS, no libraries allowed.
 
 When launching the app for the first time, a popup confirmation will appear asking whether to load a blank sheet, which starts off with a single column that has a single row, or to load some mockup fake data. This popup will not showup again unless the object dynamic-table entry is removed from Local Storage.
 
