@@ -81,9 +81,7 @@ export class Table {
 
   eventHandlers() {
     this.titleInput.addEventListener('change', () => this.onTitleChange());
-    this.addColButton.addEventListener('click', () => this.addColumn());
-    this.addRowButton.addEventListener('click', () => this.addRow());
-    this.logButton.addEventListener('click', () => this.exportRecord());
+    this.actionsButtons.addEventListener('click', e => this.onActionClick(e))
     this.tbody.addEventListener('click', e => this.selectCell(e.target));
     this.tbody.addEventListener('click', e => this.onLinkClick(e));
     this.tbody.addEventListener('click', e => this.removeRow(e));
@@ -109,6 +107,7 @@ export class Table {
     this.container = document.querySelector('.app-container');
     this.titleInput = document.querySelector('.sheet-title');
     this.bottomContent = this.container.querySelector('.bottom-content');
+    this.actionsButtons = this.container.querySelector('.action-buttons');
     this.addColButton = this.container.querySelector('[data-add-column]');
     this.addRowButton = this.container.querySelector('[data-add-row]');
     this.logButton = this.container.querySelector('[data-records]');
@@ -250,6 +249,18 @@ export class Table {
     this.titleInput.blur();
     this.adjustTableTitleWidth();
     this.saveToLocalStorage();
+  }
+
+  onActionClick(e) {
+    if (!e.target.hasAttribute('data-action')) return;
+
+    let action = e.target.dataset.action;
+    let actions = {
+      'add-column': () => this.addColumn(),
+      'add-row': () => this.addRow(),
+      'records': () => this.exportRecord()
+    }
+    actions[action]();
   }
 
   columnOptionsMenu(e) {
@@ -854,7 +865,7 @@ export class Table {
         });
     }
   }
-  
+
   get records() {
     return Array(this.totalRows).fill(null).map((a, i) => {
       let record = {}

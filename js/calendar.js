@@ -54,7 +54,7 @@ export class Calendar {
   }
 
   _createDaysGrid() {
-    this.daysGrid = document.createElement('article');
+    this.daysGrid = document.createElement('div');
     this.daysGrid.className = 'days-wrapper';
 
     const totalDays = () => new Date(this.year, this.month + 1, 0).getDate();

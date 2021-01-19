@@ -333,7 +333,7 @@ body.active-modal {
   width: fit-content;
 }
 
-.app-container .top-content .action-buttons button {
+.app-container .top-content .action-buttons [data-action] {
   display: inline-block;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -345,19 +345,19 @@ body.active-modal {
   background-color: #4585fc;
 }
 
-.app-container .top-content .action-buttons button:not(:last-child) {
+.app-container .top-content .action-buttons [data-action]:not(:last-child) {
   margin-right: 0.3rem;
 }
 
-.app-container .top-content .action-buttons button:last-child {
+.app-container .top-content .action-buttons [data-action]:last-child {
   background-color: #2f3755;
 }
 
-.app-container .top-content .action-buttons button:last-child:hover {
+.app-container .top-content .action-buttons [data-action]:last-child:hover {
   background-color: #414c76;
 }
 
-.app-container .top-content .action-buttons button:not(:last-child):hover {
+.app-container .top-content .action-buttons [data-action]:not(:last-child):hover {
   background-color: #1364fb;
 }
 

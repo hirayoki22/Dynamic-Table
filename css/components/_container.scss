@@ -9,7 +9,7 @@
     display: block;
   }
 
-  .header {
+  .top-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,7 +42,7 @@
       margin-left: auto;
       width: fit-content;
   
-      button {
+      [data-action] {
         display: inline-block;
         justify-content: center;
         width: 6.25rem;
