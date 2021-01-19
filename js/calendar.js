@@ -37,9 +37,13 @@ export class Calendar {
     this.header.className = 'cal-header';
     this.header.innerHTML = `
       <nav class="year-nav">
-        <button class="material-icons nav-btn" data-nav="prev">keyboard_arrow_left</button>
+        <button class="material-icons nav-btn" data-nav="prev" aria-label="Previous">
+          keyboard_arrow_left
+        </button>
         <div class="year">${this.monthAndYear}</div>
-        <button class="material-icons nav-btn" data-nav="next">keyboard_arrow_right</button>
+        <button class="material-icons nav-btn" data-nav="next" aria-label="Next">
+          keyboard_arrow_right
+        </button>
       </nav>
       <div class="days-name-wrapper">
         <span>Su</span>
@@ -129,4 +133,3 @@ export class Calendar {
     });
   }
 }
-
