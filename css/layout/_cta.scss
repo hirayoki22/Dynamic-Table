@@ -1,0 +1,17 @@
+.app-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin-top: 2rem;
+
+  #record-count {
+    color: $color-text-primary;
+    font-size: 0.9rem;
+
+    strong {
+      color: darken($color-tertiary, 10%);
+      font-weight: 500;
+    }
+  }
+}

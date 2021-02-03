@@ -8,7 +8,7 @@ export class Popup {
   initOverlay() {
     this.overlay = document.createElement('div');
     this.popup = document.createElement('div');
-    this.overlay.className = 'table-overlay';
+    this.overlay.className = 'overlay';
     this.popup.className = 'popup';
 
     this.popup.innerHTML = `

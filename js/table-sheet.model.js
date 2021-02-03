@@ -9,10 +9,14 @@ export const SheetModel = {
     paginateRows: true,
     pageRowLimit: 10
   },
+  activeCell: {
+    colId: null,
+    cellId: null
+  },
   editHistory: [],
   columns: [
     {
-      id: 1,
+      id: '94s7-4s68-ac55',
       header: 'Column 1',
       format: 'text',
       textAlign: 'left',

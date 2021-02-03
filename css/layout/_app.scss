@@ -1,0 +1,11 @@
+.app-body { 
+  display: none;
+  width: fit-content;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  user-select: none;
+
+  &.active {
+    display: block;
+  }
+}

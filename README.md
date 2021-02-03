@@ -117,3 +117,6 @@ Pretty self explanatory. Exists for the purpose of double-checking if the user w
 
 > All modals and be exited on `Esc` key press
 
+## Recent Changes
++ Added dynamic column options menu on header click
++ Added unsort option

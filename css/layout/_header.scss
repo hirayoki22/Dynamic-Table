@@ -1,0 +1,61 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  .sheet-title {
+    display: inline-block;
+    margin-right: 5rem;
+    color: $color-text-primary;
+    font-size: 1.1rem;
+    font-weight: 400;
+    white-space: nowrap;
+    padding: 0.15rem;
+    border: 1px solid transparent;
+    border-radius: $border-radius;
+    transition: border-color .3s ease,
+                outline-color .2s ease;
+    outline-color: transparent;
+
+    &:hover {
+      border-color: $color-tertiary;
+    }
+
+    &:active {
+      outline-style: auto;
+      outline-color: $color-tertiary;
+    }
+  }
+
+  .action-buttons {
+    margin-left: auto;
+    width: fit-content;
+
+    [data-action] {
+      display: inline-block;
+      justify-content: center;
+      width: 6.25rem;
+      padding: 0.4rem;
+      color: $color-white;
+      border-radius: $border-radius;
+      background-color: $color-tertiary;
+
+      &:not(:last-child) {
+        margin-right: 0.3rem;
+      }
+
+      &:last-child {        
+        background-color: $color-text-primary;
+
+        &:hover {
+          background-color: lighten($color-text-primary, 10%);
+        }
+      }
+
+      &:not(:last-child):hover {
+        background-color: darken($color-tertiary, 10%);
+      }
+    }
+  }
+}

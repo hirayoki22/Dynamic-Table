@@ -5,20 +5,46 @@ import { Popup } from './popup.js';
 * of columns to render the table from;
 * Table is rendered upon initialization
 */
-const loadTable = startNew => {
-  document.querySelector('.app-container').classList.add('active');
+const renderApp = () => {
+  let app = document.createElement('main');
+  app.className = 'app-body';
+  app.innerHTML = `
+  <header class="app-header">
+    <h3 class="sheet-title" name="sheet-title" contentEditable></h3>
+    <div class="action-buttons">
+      <button type="button" data-action="add-column">Add Column</button>
+      <button type="button" data-action="add-row">Add Row</button>
+      <button type="button" data-action="records">Log Recods</button>
+    </div>
+  </header>
+  <section class="app-cta"></section>`;
+  document.body.prepend(app);
+}
 
+const loadTable = (startNew = false) => {
+  let app = document.querySelector('.app-body');
+  let table = document.createElement('dynamic-table');
+  app.classList.add('active');
+  
   if (startNew) {
-    let table = new Table();
+    if (localStorage.getItem('dynamic-table')) {
+      table.tableSheet = JSON.parse(localStorage.getItem('dynamic-table'));
+    }
+    app.insertBefore(table, app.lastElementChild);
   } else {
     fetch('./api/presets.json')
       .then(res => res.json())
-      .then(table => new Table(table))
+      .then(tableSheet => {
+        table.tableSheet = tableSheet;
+        app.insertBefore(table, app.lastElementChild);
+      })
       .catch(err => console.log(err.message));
   }
 }
 
 (() => {
+  renderApp();
+
   if (!JSON.parse(localStorage.getItem('dynamic-table'))) {
     let popup = new Popup({
       title: 'Hey there, person!',

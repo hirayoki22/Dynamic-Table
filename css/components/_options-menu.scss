@@ -1,0 +1,52 @@
+.options-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8rem;
+  padding: 0.4rem 0;
+  font-size: 0.72rem;
+  background-color: $color-white;  
+  box-shadow: 0 4px 20px rgba($color-secondary, 0.2);
+  animation: show .3s ease;
+  overflow: hidden;
+  user-select: none;
+  z-index: 100;       
+  
+  &.hide {
+    animation: hide .3s ease;
+  }
+  
+  [data-action] {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    color: rgba($color-text-primary, 0.75);
+    font-weight: 500;
+    background-color: inherit;
+    cursor: pointer;
+
+    &[disabled] {
+      opacity: 0.6;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    &.focused,
+    &:not([disabled]):hover {
+      background-color: rgba($color-secondary, 0.1);
+    }
+  }
+
+  .separator {
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0 1rem;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: $border-color;
+    }
+  }
+}

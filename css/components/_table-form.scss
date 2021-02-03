@@ -1,159 +1,93 @@
-.table-overlay {
-  @include overlay();
-  animation: show .4s ease;
-  user-select: none;
-  z-index: 1000;
+#table-form {
+  position: relative;
+  max-width: 600px;
+  margin: 10% auto 0;
+  padding: 3rem;
+  color: $color-text-primary;
+  background-color: $color-white;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+  animation: slideUp .4s ease;
 
-  &.hide {
-    animation: hide .3s ease forwards;
-  }
-
-  .popup {
-    position: relative;
-    min-width: 18.75rem;
-    max-width: 20.62rem;
-    width: fit-content;
-    margin: 15% auto;
-    padding: 2.5rem;
-    color: $color-text-primary;
-    background-color: $color-white;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
-    animation: zoomIn .2s ease;
-
-    h3 {
-      padding-bottom: 2rem;
+  button[data-close] {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    padding: 1rem;
+    color: rgba($color-text-primary, .5);
+    font-size: 1rem;   
+    transition: background-color .3s ease;  
+    
+    &:hover {
       color: $color-text-primary;
-      font-size: 1rem;
-      font-weight: 500;
-      text-align: center;
-      line-height: 1.2rem;
-    }
-
-    .action-btns {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      button {
-        width: 100%;
-        padding: .4rem .3rem;
-        color: $color-white;        
-        white-space: nowrap;
-        background-color: $color-primary;
-        border: 1px solid $color-primary;
-        border-radius: $border-radius;
-        transition: background-color .3s ease,
-          box-shadow .3s ease;        
-
-        &:first-child {
-          margin-right: .5rem;
-          color: $color-text-primary;
-          background-color: $color-white;  
-          border-color: $border-color;        
-
-          &:hover {
-            background-color: rgba($border-color, .2);
-          }
-        }
-  
-        &:not(:first-child):hover {
-          box-shadow: 0 5px 15px rgba($color-primary, .5); 
-        }
-      }
     }
   }
 
-  #table-form {
-    position: relative;
-    max-width: 600px;
-    margin: 10% auto 0;
-    padding: 3rem;
-    color: $color-text-primary;
-    background-color: $color-white;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
-    animation: slideUp .4s ease;
+  h3 {
+    margin: 1rem 0 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+  }
 
-    button[data-close] {
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-      padding: 1rem;
-      color: rgba($color-text-primary, .5);
-      font-size: 1rem;   
-      transition: background-color .3s ease;  
-      
-      &:hover {
-        color: $color-text-primary;
-      }
-    }
+  .column-group {
+    display: flex;
+    width: 100%;
 
-    h3 {
-      margin: 1rem 0 2.5rem;
-      font-size: 1rem;
-      font-weight: 500;
-      text-align: center;
-    }
+    .column {
+      flex: 1;
+      padding: 0 1rem;
 
-    .column-group {
-      display: flex;
-      width: 100%;
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
 
-      .column {
-        flex: 1;
-        padding: 0 1rem;
-  
-        .form-group {
+        label {
+          margin-bottom: .3rem;
+          color: rgba($color-text-primary, .9);
+          font-size: .84rem;
+        }
+
+        & label[for="editable"] + div {
           display: flex;
-          flex-direction: column;
-          
-          &:not(:last-child) {
-            margin-bottom: 1rem;
-          }
-  
+          align-items: center;
+          height: 1.88rem;
+
           label {
-            margin-bottom: .3rem;
-            color: rgba($color-text-primary, .9);
-            font-size: .84rem;
+            margin: 0;
+            margin-right: 0.5rem;
           }
+        }
 
-          & label[for="editable"] + div {
-            display: flex;
-            align-items: center;
-            height: 1.88rem;
+        input, 
+        select, 
+        button {
+          padding: 0.4rem 0.3rem;
+          background-color: rgba($color-secondary, 0.068);
+          border-radius: $border-radius;            
+          transition: border-color .3s ease,
+          outline-color .2s ease;
+          outline-color: transparent;
+        }
 
-            label {
-              margin: 0;
-              margin-right: 0.5rem;
-            }
+        input, select {
+          &:focus {
+            outline-style: auto;
+            outline-color: $color-tertiary;
           }
+        }
 
-          input, 
-          select, 
-          button {
-            padding: 0.4rem 0.3rem;
-            background-color: rgba($color-secondary, 0.068);
-            border-radius: $border-radius;            
-            transition: border-color .3s ease,
-            outline-color .2s ease;
-            outline-color: transparent;
-          }
-
-          input, select {
-            &:focus {
-              outline-style: auto;
-              outline-color: $color-tertiary;
-            }
-          }
-
-          button {
-            color: $color-white;        
-            background-color: $color-primary;
-            transition: background-color .2s ease,
-            box-shadow .3s ease;            
-      
-            &:hover {
-              box-shadow: 0 5px 15px rgba($color-primary, .5);
-            }
+        button {
+          color: $color-white;        
+          background-color: $color-primary;
+          transition: background-color .2s ease,
+          box-shadow .3s ease;            
+    
+          &:hover {
+            box-shadow: 0 5px 15px rgba($color-primary, .5);
           }
         }
       }

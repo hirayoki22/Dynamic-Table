@@ -10,7 +10,7 @@ const colFormats = [
 ];
 
 const textAlignment = [
-  { value: 'feft', label: 'Left' },
+  { value: 'left', label: 'Left' },
   { value: 'right', label: 'Right' },
   { value: 'center', label: 'Center' }
 ];
@@ -21,19 +21,19 @@ export class TableForm {
     title, 
     header, 
     format, 
-    textAlign, 
+    alignment, 
     editable = true
   ) {
     this.title = title || 'Table Column Form';
     this.header = header || 'New Column';
     this.format = format || 'text';
-    this.textAlign = textAlign || 'left';
+    this.alignment = alignment || 'left';
     this.editable = editable;
   }
 
   initOverlay() {
     this.overlay = document.createElement('div');
-    this.overlay.className = 'table-overlay';
+    this.overlay.className = 'overlay';
     this.form = document.createElement('form');
     this.form.id = 'table-form';
 
@@ -94,7 +94,7 @@ export class TableForm {
 
     this.selectTextAlign.innerHTML = textAlignment.map(option => {
       return `
-        <option value="${option.value}" ${selected(option.value, this.textAlign)}>
+        <option value="${option.value}" ${selected(option.value, this.alignment)}>
           ${option.label}
         </option>`;
     });
@@ -116,7 +116,7 @@ export class TableForm {
         resolve({
           header: this.form.header.value.trim(),
           format: this.form.format.value,
-          textAlign: this.form['text-align'].value,
+          alignment: this.form['text-align'].value,
           editable: this.form.querySelector('[name="editable"]').checked
         });
         this.hideForm();

@@ -1,0 +1,42 @@
+.pagination-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  width: fit-content;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    padding: 0.4rem;
+    color: $color-text-primary;
+    font-size: inherit;
+    background-color: #e3e8f1;     
+    transition: background-color .3s ease,
+      opacity .3s ease, color .3s ease;        
+
+    &.active {
+      color: $color-white;
+      background-color: #9497a0;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    &:not(:disabled):not(.active):hover {
+      background-color: #bdc2cc;
+    }
+
+    &:not(.active):active {
+      background-color: #a6aab3;
+    }
+  }
+
+  .page-btn-wrapper {
+    display: flex;
+  }
+}

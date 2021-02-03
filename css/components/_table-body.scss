@@ -1,0 +1,138 @@
+.table-body {
+  width: auto;
+
+  .row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &[data-active] {
+      position: relative;
+      box-shadow: 0 5px 10px rgba($color-secondary, 0.3);
+      z-index: 100;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: calc(100% - 1px);
+        height: calc(100% - 1px);
+        background-color: rgba($color-tertiary, 0.16);
+        border: 1px solid $color-tertiary; 
+        border-radius: $border-radius;
+      }
+    }
+
+    .cell {
+      display: flex;
+      align-items: center;          
+      position: relative;
+      width: $cell-width;
+      height: $cell-height;
+      color: $color-text-primary;
+      white-space: nowrap;
+      @include cell-border($border-color);
+
+      .cell-value {
+        display: block;
+        width: inherit;
+        height: inherit;
+        padding: 0.3rem;
+        line-height: calc(25px - 0.6rem);
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      &[data-selected] {
+        position: relative;
+        box-shadow: none;
+        z-index: 1;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: calc(100% - 3px);
+          height: calc(100% - 3px);
+          border: 2px solid $color-tertiary;
+          border-radius: $border-radius;
+        }
+      }
+
+      &[data-locked] {
+        position: relative;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, .1);
+          z-index: -1;
+        }
+      }
+
+      &[data-alignment="left"] {
+        .cell-value,
+        .cell-input {
+          text-align: left;
+        }
+      }
+
+      &[data-alignment="right"] {
+        .cell-value,
+        .cell-input {
+          text-align: right;
+        }
+      }
+
+      &[data-alignment="center"] {
+        .cell-value,
+        .cell-input {
+          text-align: center;
+        }
+      }
+
+      &[data-format="email"],
+      &[data-format="url"] {
+        .cell-value,
+        .cell-input  {
+          color: darken($color-tertiary, 10%);
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .editable-cell {
+      position: absolute;      
+      display: flex;
+      align-items: center;
+      width: 100%; 
+      height: 25px;
+      background-color: $color-white;
+      box-shadow: 0 5px 10px rgba($color-secondary, 0.17);
+      z-index: 10;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: calc(100% - 3px);
+        height: calc(100% - 3px);
+        border: 2px solid $color-tertiary; 
+        border-radius: $border-radius;
+      }
+
+      .cell-input {
+        width: 100%;
+        padding: 0.3rem;                 
+        z-index: 50;
+      }
+    }
+  }
+}

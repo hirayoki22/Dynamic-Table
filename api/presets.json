@@ -10,13 +10,13 @@
     "pageRowLimit": 10
   },
   "activeCell": {
-    "column": null,
-    "cell": null
+    "colId": null,
+    "cellId": null
   },
   "editHistory": [],
   "columns": [
     {
-      "id": 1,
+      "id": "c08f-4b4e-bad7",
       "header": "Name",
       "format": "text",
       "alignment": "left",
@@ -25,8 +25,8 @@
       "cells": [
         { "id": 1, "value": "Kate Spade" },
         { "id": 2, "value": "John Doe" },
-        { "id": 3, "value": "Adison P." },
-        { "id": 4, "value": "Gary D." },
+        { "id": 3, "value": "Arnold Ryan" },
+        { "id": 4, "value": "Gabriel Davidson" },
         { "id": 5, "value": "Benjy Pock" },
         { "id": 6, "value": "Loreen Tupper" },
         { "id": 7, "value": "Heidi Yair" },
@@ -46,7 +46,7 @@
       ]
     }, 
     {
-      "id": 2,
+      "id": "2472-4e68-ad37",
       "header": "Age",
       "format": "number",
       "alignment": "center",
@@ -76,7 +76,7 @@
       ]
     }, 
     {
-      "id": 3,
+      "id": "1fd8-4bd6-88c8",
       "header": "Gender",
       "format": "text",
       "alignment": "center",
@@ -106,7 +106,7 @@
       ]
     }, 
     {
-      "id": 4,
+      "id": "c225-4486-b02a",
       "header": "Email",
       "format": "email",
       "alignment": "left",
@@ -136,7 +136,7 @@
       ]
     }, 
     {
-      "id": 5,
+      "id": "4f60-42b6-a053",
       "header": "Driver's License",
       "format": "boolean",
       "alignment": "center",
@@ -166,7 +166,7 @@
       ]
     }, 
     {
-      "id": 6,
+      "id": "f878-4cc0-85c3",
       "header": "Hired Date",
       "format": "datetime",
       "alignment": "right",
@@ -180,7 +180,7 @@
         { "id": 5, "value": "2013-05-16T04:00:00.000Z" },
         { "id": 6, "value": "2020-11-21T04:00:00.000Z" },
         { "id": 7, "value": "2018-02-12T04:00:00.000Z" },
-        { "id": 8,  "value": "2016-06-06T04:00:00.000Z" },
+        { "id": 8, "value": "2016-06-06T04:00:00.000Z" },
         { "id": 9, "value": "2018-08-08T04:00:00.000Z" },
         { "id": 10, "value": "2014-01-15T04:00:00.000Z" },
         { "id": 11, "value": "2020-07-16T04:00:00.000Z" },
@@ -196,7 +196,7 @@
       ]
     }, 
     {
-      "id": 7,
+      "id": "5211-43fa-b43f",
       "header": "Country",
       "format": "text",
       "alignment": "right",
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": 8,
+      "id": "323d-429a-b23f",
       "header": "Monthly Income",
       "format": "money-usd",
       "alignment": "right",

@@ -1,0 +1,10 @@
+.overlay {
+  @include overlay();
+  animation: show .4s ease;
+  user-select: none;
+  z-index: 1000;
+
+  &.hide {
+    animation: hide .3s ease forwards;
+  }
+}
