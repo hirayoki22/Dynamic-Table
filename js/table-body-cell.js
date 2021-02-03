@@ -1,16 +1,25 @@
 export class Cell {
   isEditing = false;
 
-  constructor({id, value, format}) {
-    this.id = id;
-    this.value = value;
+  constructor({
+    colId,
+    format,
+    editable,
+    alignment,
+    cellId,
+    value
+  }) {
+    this.colId = colId;
     this.format = format;
-
-    return this.onInit();
+    this.editable = editable;
+    this.alignment = alignment;
+    this.cellId = cellId;
+    this.value = value;
+    this.onInit();
   }
 
   get formattedValue() {
-    const formatting = {
+    const formats = {
       text: this.value,
       url: `<p data-href="${this.value}" title="Ctrl + Click">${this.value}</p>`,
       email: `<p data-href="mailto:${this.value}" title="Ctrl + Click">${this.value}</p>`,
@@ -20,49 +29,50 @@ export class Cell {
       datetime: new Date(this.value).toLocaleDateString(),
       boolean: !this.value ? 'NO' : 'YES'
     }
-    return this.value == null 
-      ? '<span></span>' 
-      : `<span>${formatting[this.format]}`;
+    return this.value == null ? '' : formats[this.format];
+  }
+
+  get parsedValue() {
+    let parsed = {
+      text: this.value,
+      url: this.value,
+      email: this.value,
+      number: +this.value,
+      'money-usd': +this.value,
+      'money-eur': +this.value,
+      datetime: new Date(this.value),
+      boolean: this.value.toUpperCase() == 'NO' ? false : true
+    }
+    return !this.value ? null : parsed[this.format];
   }
 
   onInit() {
     this.cell = document.createElement('div');
-    this.input = document.createElement('input');
     this.cell.classList.add('cell');
+    this.cell.setAttribute('data-uid', `${this.colId}-${this.cellId}`);
+    this.cell.setAttribute('data-col-id', this.colId);
+    this.cell.setAttribute('data-cell-id', this.cellId);
     this.cell.setAttribute('data-format', this.format);
-    this.cell.innerHTML = this.formattedValue;
+    this.cell.setAttribute('data-alignment', this.alignment);
+    !this.editable ? this.cell.setAttribute('data-locked', '') : false;
+    this.cell.innerHTML = `<span class="cell-value">${this.formattedValue}</span>`;
 
-    this.cell.addEventListener('dblclick', () => this.editStart());
-    this.input.addEventListener('keyup', e => this.editEnd(e.key));
-    return this.cell;
+    this.cell.addEventListener('click', e => this.onLinkClick(e.ctrlKey));
   }
 
-  editStart() {
-    if (this.isEditing) return;
+  onLinkClick(ctrlKeyPressed) {
+    if (this.format !== 'email' && this.format !== 'url') return;
 
-    this.cell.classList.add('editing-cell');
-    this.input.value = this.value;
-
-    this.cell.append(this.input);
-    this.input.focus();
-  }
-
-  editEnd(key) {
-    const afterEnd = (revert = false) => {
-      this.cell.classList.remove('editing-cell');
-      this.value = !revert ? this.input.value.trim() : this.value;
-      this.cell.innerHTML = this.formattedValue;
-      this.input.remove();
+    if (ctrlKeyPressed) {
+      let link =  document.createElement('a');
+      link.href = this.cell.querySelector('p').dataset.href;
+      link.target = '_blank';
+      link.style.display = 'none';
+      
+      document.body.append(link);
+      link.click();
+      link.remove();
     }
-
-    if (key == 'Enter') {
-      afterEnd();
-    }
-
-    if (key == 'Escape') {
-      afterEnd(true);
-    }
-    console.log(this.value);
   }
 
 }

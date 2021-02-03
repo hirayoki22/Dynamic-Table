@@ -135,7 +135,7 @@
   }
 
   .tbody {
-    width: fit-content;
+    width: auto;
 
     .row {
       display: flex;
@@ -164,17 +164,21 @@
         display: flex;
         align-items: center;          
         position: relative;
-        height: 25px;
+        height: $cell-height;
         color: $color-text-primary;
         @include cell-border($border-color);
 
-        span {
+        .cell-value {
+          display: block;
+          width: inherit;
+          height: inherit;
           padding: 0.3rem;
+          line-height: calc(25px - 0.6rem);
           white-space: nowrap;
           overflow: hidden;
         }
 
-        &.selected {
+        &[selected] {
           position: relative;
           box-shadow: none;
           z-index: 1;
@@ -191,7 +195,7 @@
           }
         }
 
-        &.non-editable {
+        &[data-locked] {
           position: relative;
           
           &::before {
@@ -201,45 +205,43 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, .2);
+            background-color: rgba(0, 0, 0, .1);
             z-index: -1;
           }
         }
 
-        &.left {
-          justify-content: flex-start;
-
-          input {
+        &[data-alignment="left"] {
+          .cell-value,
+          .cell-input {
             text-align: left;
           }
         }
   
-        &.right {
-          justify-content: flex-end;
-
-          input {
+        &[data-alignment="right"] {
+          .cell-value,
+          .cell-input {
             text-align: right;
           }
         }
 
-        &.center {
-          justify-content: center;
-
-          input {
+        &[data-alignment="center"] {
+          .cell-value,
+          .cell-input {
             text-align: center;
           }
         }
 
         &[data-format="email"],
         &[data-format="url"] {
-          span, input {
+          .cell-value,
+          .cell-input  {
             color: darken($color-tertiary, 10%);
             text-decoration: underline;
           }
         }
       }
 
-      .editing-cell {
+      .editable-cell {
         position: absolute;      
         display: flex;
         align-items: center;
@@ -260,7 +262,7 @@
           border-radius: $border-radius;
         }
 
-        input {
+        .cell-input {
           width: 100%;
           padding: 0.3rem;                 
           z-index: 50;

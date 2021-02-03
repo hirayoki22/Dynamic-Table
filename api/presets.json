@@ -19,7 +19,7 @@
       "id": 1,
       "header": "Name",
       "format": "text",
-      "textAlign": "left",
+      "alignment": "left",
       "order": 1,
       "editable": true,
       "cells": [
@@ -49,7 +49,7 @@
       "id": 2,
       "header": "Age",
       "format": "number",
-      "textAlign": "center",
+      "alignment": "center",
       "order": 2,
       "editable": true,
       "cells": [
@@ -79,7 +79,7 @@
       "id": 3,
       "header": "Gender",
       "format": "text",
-      "textAlign": "center",
+      "alignment": "center",
       "order": 3,
       "editable": true,
       "cells": [
@@ -109,7 +109,7 @@
       "id": 4,
       "header": "Email",
       "format": "email",
-      "textAlign": "left",
+      "alignment": "left",
       "order": 4,
       "editable": true,
       "cells": [
@@ -139,7 +139,7 @@
       "id": 5,
       "header": "Driver's License",
       "format": "boolean",
-      "textAlign": "center",
+      "alignment": "center",
       "order": 5,
       "editable": true,
       "cells": [
@@ -169,7 +169,7 @@
       "id": 6,
       "header": "Hired Date",
       "format": "datetime",
-      "textAlign": "right",
+      "alignment": "right",
       "order": 6,
       "editable": true,
       "cells": [
@@ -199,7 +199,7 @@
       "id": 7,
       "header": "Country",
       "format": "text",
-      "textAlign": "right",
+      "alignment": "right",
       "order": 7,
       "editable": true,
       "cells": [
@@ -229,7 +229,7 @@
       "id": 8,
       "header": "Monthly Income",
       "format": "money-usd",
-      "textAlign": "right",
+      "alignment": "right",
       "order": 8,
       "editable": true,
       "cells": [

@@ -1,5 +1,6 @@
 import { SheetModel } from './table-sheet.model.js';
 import { TableForm } from './table-form.js';
+import { TableBody } from './table-body.js';
 import { Calendar } from './calendar.js';
 import { Cache } from './cache.js';
 import { Popup } from './popup.js';
@@ -15,7 +16,7 @@ export class Table {
     this.renderTable();
     this.adjustTableTitleWidth();
     this.renderHeaders();
-    this.renderCells();
+    // this.renderCells();
     this.renderRecordCount();
     this.renderPaginationBtns();
     this.eventHandlers();
@@ -41,7 +42,7 @@ export class Table {
     return this.columns[0].cells.length;
   }
 
-  get paginatedRows() {
+  get paginatedColumns() {
     let deepClone = JSON.parse(JSON.stringify(this.columns));
     let start = (this.currentPage - 1) * this.pageRowLimit;
     let end = start + this.pageRowLimit;
@@ -82,10 +83,10 @@ export class Table {
   eventHandlers() {
     this.titleInput.addEventListener('change', () => this.onTitleChange());
     this.actionsButtons.addEventListener('click', e => this.onActionClick(e))
-    this.tbody.addEventListener('click', e => this.selectCell(e.target));
-    this.tbody.addEventListener('click', e => this.onLinkClick(e));
-    this.tbody.addEventListener('click', e => this.removeRow(e));
-    this.tbody.addEventListener('dblclick', e => this.editCell(e.target));
+    // this.tbody.addEventListener('click', e => this.selectCell(e.target));
+    // this.tbody.addEventListener('click', e => this.onLinkClick(e));
+    // this.tbody.addEventListener('click', e => this.removeRow(e));
+    // this.tbody.addEventListener('dblclick', e => this.editCell(e.target));
     this.thead.addEventListener('contextmenu', e => this.columnOptionsMenu(e));
     this.thead.addEventListener('click', e => this.onSortbtnClick(e));
     this.thead.addEventListener('mousedown', e => this.onMouseDown(e));
@@ -103,7 +104,10 @@ export class Table {
     this.tbody = document.createElement('div');
     this.table.className = 'table';
     this.thead.className = 'thead';
-    this.tbody.className = 'tbody';
+    // this.tbody.className = 'tbody';
+    /* START */
+    this.tbody = new TableBody(this);
+    /* END */
     this.container = document.querySelector('.app-container');
     this.titleInput = document.querySelector('.sheet-title');
     this.bottomContent = this.container.querySelector('.bottom-content');
@@ -142,30 +146,30 @@ export class Table {
     }).join('');
   }
 
-  renderCells() {
-    let limit = this.paginatedRows[0].cells.length;
-    this.tbody.innerHTML = Array(limit).fill('<div class="row"></div>').join('');
+  // renderCells() {
+  //   let limit = this.paginatedColumns[0].cells.length;
+  //   this.tbody.innerHTML = Array(limit).fill('<div class="row"></div>').join('');
 
-    this.paginatedRows.forEach(col => {
-      [...this.tbody.children].forEach((row, i) => {
-        row.innerHTML += `
-          <div
-          class="cell ${col.textAlign} ${!col.editable ? 'non-editable' : ''}"
-          data-col-id="${col.id}" 
-          data-cell-id="${col.cells[i]?.id}"
-          data-format="${col.format}">
-            <span>${this.formatCellValue(col.cells[i]?.value, col.format)}</span>
-          </div>`;
-      });
-    });
+  //   this.paginatedColumns.forEach(col => {
+  //     [...this.tbody.children].forEach((row, i) => {
+  //       row.innerHTML += `
+  //         <div
+  //         class="cell ${col.alignment} ${!col.editable ? 'non-editable' : ''}"
+  //         data-col-id="${col.id}" 
+  //         data-cell-id="${col.cells[i]?.id}"
+  //         data-format="${col.format}">
+  //           <span>${this.formatCellValue(col.cells[i]?.value, col.format)}</span>
+  //         </div>`;
+  //     });
+  //   });
 
-    if (this.tableSheet.filterBy.column) {
-      this.sortColumn(
-        this.tableSheet.filterBy.column,
-        this.tableSheet.filterBy.order
-      );
-    }
-  }
+  //   if (this.tableSheet.filterBy.column) {
+  //     this.sortColumn(
+  //       this.tableSheet.filterBy.column,
+  //       this.tableSheet.filterBy.order
+  //     );
+  //   }
+  // }
 
   renderRecordCount() {
     this.count = document.createElement('span');
@@ -212,33 +216,33 @@ export class Table {
       .classList.add('active');
   }
 
-  formatCellValue(value, format) {
-    const formatting = {
-      text: value,
-      url: `<p data-href="${value}" title="Ctrl + Click">${value}</p>`,
-      email: `<p data-href="mailto:${value}" title="Ctrl + Click">${value}</p>`,
-      number: `${(+value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`,
-      'money-usd': `$${(+value).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`,
-      'money-eur': `€${(+value).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`,
-      datetime: new Date(value).toLocaleDateString(),
-      boolean: !value ? 'NO' : 'YES'
-    }
-    return value == null ? '' : formatting[format];
-  }
+  // formatCellValue(value, format) {
+  //   const formatting = {
+  //     text: value,
+  //     url: `<p data-href="${value}" title="Ctrl + Click">${value}</p>`,
+  //     email: `<p data-href="mailto:${value}" title="Ctrl + Click">${value}</p>`,
+  //     number: `${(+value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`,
+  //     'money-usd': `$${(+value).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`,
+  //     'money-eur': `€${(+value).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`,
+  //     datetime: new Date(value).toLocaleDateString(),
+  //     boolean: !value ? 'NO' : 'YES'
+  //   }
+  //   return value == null ? '' : formatting[format];
+  // }
 
-  parseCellValue(value, format) {
-    let parsed = {
-      text: value,
-      url: value,
-      email: value,
-      number: +value,
-      'money-usd': +value,
-      'money-eur': +value,
-      datetime: new Date(value),
-      boolean: value.toUpperCase() == 'NO' ? false : true
-    }
-    return !value ? null : parsed[format];
-  }
+  // parseCellValue(value, format) {
+  //   let parsed = {
+  //     text: value,
+  //     url: value,
+  //     email: value,
+  //     number: +value,
+  //     'money-usd': +value,
+  //     'money-eur': +value,
+  //     datetime: new Date(value),
+  //     boolean: value.toUpperCase() == 'NO' ? false : true
+  //   }
+  //   return !value ? null : parsed[format];
+  // }
 
   adjustTableTitleWidth() {
     this.titleInput.style.width = `${this.titleInput.scrollWidth}px`;
@@ -401,106 +405,106 @@ export class Table {
     document.onmouseup = () => mouseUpHandler();
   }
 
-  onLinkClick(e) {
-    if (e.target.closest('.cell[data-format="email"]') ||
-      e.target.closest('.cell[data-format="url"]')
-    ) {
-      if (e.ctrlKey) {
-        let link =  document.createElement('a');
-        let target = (e.target.closest('.cell[data-format="email"]') ||
-        e.target.closest('.cell[data-format="url"]')).querySelector('p');
-        link.href = target.dataset.href;
-        link.target = '_blank';
-        link.style.display = 'none';
+  // onLinkClick(e) {
+  //   if (e.target.closest('.cell[data-format="email"]') ||
+  //     e.target.closest('.cell[data-format="url"]')
+  //   ) {
+  //     if (e.ctrlKey) {
+  //       let link =  document.createElement('a');
+  //       let target = (e.target.closest('.cell[data-format="email"]') ||
+  //       e.target.closest('.cell[data-format="url"]')).querySelector('p');
+  //       link.href = target.dataset.href;
+  //       link.target = '_blank';
+  //       link.style.display = 'none';
         
-        document.body.append(link);
-        link.click();
-        link.remove();
-      }
-    }
-  }
+  //       document.body.append(link);
+  //       link.click();
+  //       link.remove();
+  //     }
+  //   }
+  // }
 
-  selectCell(target) {
-    target = target?.closest('.cell');
+  // selectCell(target) {
+  //   target = target?.closest('.cell');
 
-    if (!target) return;
+  //   if (!target) return;
 
-    this.cellSelected = true;
-    this.rows = [...this.tbody.children];
-    this.cells = [...this.tbody.querySelectorAll('.cell')];
-    this.rowsLength = this.tbody.childElementCount;
-    this.cellsLength = this.rows[0].childElementCount;
-    this.rowIndex = [...this.tbody.children].indexOf(target.parentNode);
-    this.cellIndex = [...this.rows[this.rowIndex].children].indexOf(target);
+  //   this.cellSelected = true;
+  //   this.rows = [...this.tbody.children];
+  //   this.cells = [...this.tbody.querySelectorAll('.cell')];
+  //   this.rowsLength = this.tbody.childElementCount;
+  //   this.cellsLength = this.rows[0].childElementCount;
+  //   this.rowIndex = [...this.tbody.children].indexOf(target.parentNode);
+  //   this.cellIndex = [...this.rows[this.rowIndex].children].indexOf(target);
 
-    this.cells.forEach(cell => cell.classList.remove('selected'));
-    target.classList.add('selected');
+  //   this.cells.forEach(cell => cell.classList.remove('selected'));
+  //   target.classList.add('selected');
 
-    // Prevent insta type on cells on blur
-    document.onkeydown = e => {
-      if ((e.target !== document.body)) return;
-      this.selectedCellKeydown(e);
-    }
-  }
+  //   // Prevent insta type on cells on blur
+  //   document.onkeydown = e => {
+  //     if ((e.target !== document.body)) return;
+  //     this.selectedCellKeydown(e);
+  //   }
+  // }
 
-  selectedCellKeydown(e) {
-    if (this.isEditing || !this.cellSelected) return;
+  // selectedCellKeydown(e) {
+  //   if (this.isEditing || !this.cellSelected) return;
 
-    this.cells.forEach(cell => cell.classList.remove('selected'));
+  //   this.cells.forEach(cell => cell.classList.remove('selected'));
 
-    switch (e.key) {
-      case 'ArrowUp':
-        if (e.ctrlKey) {
-          this.rowIndex = 0;
-        } else {
-          this.rowIndex > 0 ? this.rowIndex -= 1 : this.rowsLength - 1;
-        }
-        break;
-      case 'ArrowDown':
-        if (e.ctrlKey) {
-          this.rowIndex = this.rowsLength - 1;
-        } else {
-          this.rowIndex < this.rowsLength - 1 ? this.rowIndex += 1 : 0;
-        }
-        break;
-      case 'ArrowLeft':
-        if (e.ctrlKey) {
-          this.cellIndex = 0;
-        } else {
-          this.cellIndex > 0 ? this.cellIndex -= 1 : this.cellsLength - 1;
-        }
-        break;
-      case 'ArrowRight':      
-        if (e.ctrlKey) {
-          this.cellIndex = this.cellsLength - 1;
-        } else {
-          this.cellIndex < this.cellsLength - 1 ? this.cellIndex += 1 : 0;
-        }
-        break;
-      case 'F2':
-        this.editCell(this.rows[this.rowIndex].children[this.cellIndex]);
-        break;
-      case 'Enter':
-        // Delay the event to prevent event overlap
-        // Still has issues tho xD
-        setTimeout(() => {
-          this.editCell(this.rows[this.rowIndex].children[this.cellIndex]);
-        }, 100);
-        break;
-      case 'Delete':
-        this.clearCell(this.rows[this.rowIndex].children[this.cellIndex]);
-        break;
-    }
+  //   switch (e.key) {
+  //     case 'ArrowUp':
+  //       if (e.ctrlKey) {
+  //         this.rowIndex = 0;
+  //       } else {
+  //         this.rowIndex > 0 ? this.rowIndex -= 1 : this.rowsLength - 1;
+  //       }
+  //       break;
+  //     case 'ArrowDown':
+  //       if (e.ctrlKey) {
+  //         this.rowIndex = this.rowsLength - 1;
+  //       } else {
+  //         this.rowIndex < this.rowsLength - 1 ? this.rowIndex += 1 : 0;
+  //       }
+  //       break;
+  //     case 'ArrowLeft':
+  //       if (e.ctrlKey) {
+  //         this.cellIndex = 0;
+  //       } else {
+  //         this.cellIndex > 0 ? this.cellIndex -= 1 : this.cellsLength - 1;
+  //       }
+  //       break;
+  //     case 'ArrowRight':      
+  //       if (e.ctrlKey) {
+  //         this.cellIndex = this.cellsLength - 1;
+  //       } else {
+  //         this.cellIndex < this.cellsLength - 1 ? this.cellIndex += 1 : 0;
+  //       }
+  //       break;
+  //     case 'F2':
+  //       this.editCell(this.rows[this.rowIndex].children[this.cellIndex]);
+  //       break;
+  //     case 'Enter':
+  //       // Delay the event to prevent event overlap
+  //       // Still has issues tho xD
+  //       setTimeout(() => {
+  //         this.editCell(this.rows[this.rowIndex].children[this.cellIndex]);
+  //       }, 100);
+  //       break;
+  //     case 'Delete':
+  //       this.clearCell(this.rows[this.rowIndex].children[this.cellIndex]);
+  //       break;
+  //   }
 
-    // Special actions
-    if (/^(\w|\W|\s)$/.test(e.key) && !e.ctrlKey) {
-      this.editCell(this.rows[this.rowIndex].children[this.cellIndex], true);
-    }
-    else if (e.ctrlKey && (e.key == 'z' || e.key == 'y')) {
-      this.undoChanges(e);
-    } 
-    this.rows[this.rowIndex].children[this.cellIndex].classList.add('selected');
-  }
+  //   // Special actions
+  //   if (/^(\w|\W|\s)$/.test(e.key) && !e.ctrlKey) {
+  //     this.editCell(this.rows[this.rowIndex].children[this.cellIndex], true);
+  //   }
+  //   else if (e.ctrlKey && (e.key == 'z' || e.key == 'y')) {
+  //     this.undoChanges(e);
+  //   } 
+  //   this.rows[this.rowIndex].children[this.cellIndex].classList.add('selected');
+  // }
 
   undoChanges(e) {
     // This is still not perfect lol
@@ -549,81 +553,81 @@ export class Table {
     }
   }
 
-  editCell(target, replace = false) {
-    if (this.isEditing) return;
+  // editCell(target, replace = false) {
+  //   if (this.isEditing) return;
 
-    target = target.closest('.cell');
-    let column = this.columns.find(col => col.id == +target.dataset.colId);
+  //   target = target.closest('.cell');
+  //   let column = this.columns.find(col => col.id == +target.dataset.colId);
     
-    if (!column.editable) return;
+  //   if (!column.editable) return;
     
-    this.isEditing = true;
-    let cell = column.cells.find(val => val.id == +target.dataset.cellId);
-    let editingCell = document.createElement('div');
-    let input = document.createElement('input');
-    editingCell.className = 'editing-cell';
-    input.setAttribute('data-edit-input', '');
-    editingCell.append(input);
-    target.append(editingCell);
+  //   this.isEditing = true;
+  //   let cell = column.cells.find(val => val.id == +target.dataset.cellId);
+  //   let editingCell = document.createElement('div');
+  //   let input = document.createElement('input');
+  //   editingCell.className = 'editable-cell';
+  //   input.className = 'cell-input';
+  //   editingCell.append(input);
+  //   target.append(editingCell);
 
-    if (!replace) {
-      input.value = (column.format.includes('money') ||
-        (column.format == 'number'))
-        ? cell.value : target.textContent.trim();
-    }
+  //   if (!replace) {
+  //     input.value = (column.format.includes('money') ||
+  //       (column.format == 'number'))
+  //       ? cell.value : target.textContent.trim();
+  //   }
 
-    editingCell.style.width = `${input.scrollWidth}px`;
-    input.focus();
+  //   editingCell.style.width = `${input.scrollWidth}px`;
+  //   input.focus();
 
-    const editEnd = (revert = false) => {
-      cell.value = !revert 
-        ? this.parseCellValue(input.value.trim(), column.format) 
-        : cell.value;
-      target.innerHTML = `
-        <span>${this.formatCellValue(cell.value, column.format)}</span>`;
+  //   const editEnd = (revert = false) => {
+  //     cell.value = !revert 
+  //       ? this.parseCellValue(input.value.trim(), column.format) 
+  //       : cell.value;
+  //     target.innerHTML = `
+  //       <span>${this.formatCellValue(cell.value, column.format)}</span>`;
 
-      this.saveToLocalStorage();
-      this.isEditing = false;
-    }
+  //     this.saveToLocalStorage();
+  //     this.isEditing = false;
+  //   }
 
-    const selectNextCell = () => {
-      let index = [...target.parentNode.children].indexOf(target);
-      let row = target.parentNode.nextElementSibling;
-      this.selectCell(row?.children[index]);
-    }
+  //   const selectNextCell = () => {
+  //     let index = [...target.parentNode.children].indexOf(target);
+  //     let row = target.parentNode.nextElementSibling;
+  //     this.selectCell(row?.children[index]);
+  //   }
 
-    if (column.format == 'datetime') {
-      editingCell.append(this.calendar.initCalendar(cell.value));
-      this.calendar.onClick()
-      .then(date => {
-        input.value = date;
-        editEnd();
-        this.cache.updateValue({
-          columns: this.columns,
-          origin: { column: column.id, cell: cell.id }
-        });
-      });
-    }
+  //   if (column.format == 'datetime') {
+  //     editingCell.append(this.calendar.initCalendar(cell.value));
+  //     this.calendar.onClick()
+  //     .then(date => {
+  //       input.value = date;
+  //       editEnd();
+  //       this.cache.updateValue({
+  //         columns: this.columns,
+  //         origin: { column: column.id, cell: cell.id }
+  //       });
+  //     });
+  //   }
 
-    input.addEventListener('keydown', e => {
-      if (e.key == 'Enter') {
-        selectNextCell();
-        editEnd();
-        this.cache.updateValue({
-          columns: this.columns,
-          origin: { column: column.id, cell: cell.id }
-        });
-      }
-      else if (e.key == 'Escape') editEnd(true);
-    });
+  //   input.addEventListener('keydown', e => {
+  //     if (e.key == 'Enter') {
+  //       selectNextCell();
+  //       editEnd();
+  //       this.cache.updateValue({
+  //         columns: this.columns,
+  //         origin: { column: column.id, cell: cell.id }
+  //       });
+  //     }
+  //     else if (e.key == 'Escape') editEnd(true);
+  //   });
 
-    document.onclick = e => {
-      if (e.target.closest('.cell') && (e.target.closest('.cell') !== target)) {
-        editEnd(true);
-        document.onclick = null;
-      }
-    }
-  }
+  //   document.onclick = e => {
+  //     if (e.target.closest('.cell') && (e.target.closest('.cell') !== target)) {
+  //       editEnd(true);
+  //       document.onclick = null;
+  //     }
+  //   }
+  // }
 
   clearCell(target) {
     let column = this.columns.find(col => col.id == +target.dataset.colId);
@@ -687,7 +691,7 @@ export class Table {
         </div>`;
       existingRows.forEach((row, index) => row.innerHTML += `
         <div 
-        class="cell ${prop.textAlign} ${!prop.editable ? 'non-editable' : ''}" 
+        class="cell ${prop.alignment} ${!prop.editable ? 'non-editable' : ''}" 
         data-col-id="${id}" 
         data-cell-id="${index + 1}"
         data-format="${prop.format}"><span></span></div>`);
@@ -696,7 +700,7 @@ export class Table {
         id,
         header: prop.header,
         format: prop.format,
-        textAlign: prop.textAlign,
+        alignment: prop.alignment,
         order: this.columns.length + 1,
         editable: prop.editable,
         cells
@@ -715,7 +719,7 @@ export class Table {
     this.tableForm.title = 'Edit Column',
     this.tableForm.header = column.header;
     this.tableForm.format = column.format;
-    this.tableForm.textAlign = column.textAlign;
+    this.tableForm.alignment = column.alignment;
     this.tableForm.editable = column.editable;
 
     this.tableForm.showForm();
@@ -723,7 +727,7 @@ export class Table {
       .then(prop => {
         column.header = prop.header;
         column.format = prop.format;
-        column.textAlign = prop.textAlign;
+        column.alignment = prop.alignment;
         column.editable = prop.editable;
         this.renderHeaders();
         this.renderCells();
@@ -807,7 +811,7 @@ export class Table {
 
   addRow() {  
     let interval = setInterval(() => {
-      let totalRenderedRows = this.paginatedRows[0].cells.length;
+      let totalRenderedRows = this.paginatedColumns[0].cells.length;
        if (totalRenderedRows < this.pageRowLimit) {
         clearInterval(interval);
         
@@ -849,7 +853,7 @@ export class Table {
             });
             row.remove();
             
-            if (!this.paginatedRows[0].cells.length) {
+            if (!this.paginatedColumns[0].cells.length) {
               this.currentPage--;
             }
             this.renderCells();
