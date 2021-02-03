@@ -200,8 +200,14 @@ export class TableBody {
     else if (e.ctrlKey && (e.key == 'z' || e.key == 'y')) {
       this.table.undoChanges(e);
     } 
-    this.rows[this.rowIndex].children[this.cellIndex]
-      .setAttribute('data-selected', '');
+    
+    let target = this.rows[this.rowIndex].children[this.cellIndex];
+    target.setAttribute('data-selected', '');
+
+    this.activeCell = {
+      colId: target.dataset.colId,
+      cellId: target.dataset.cellId,
+    }
   }
 
   editCell(target, replace = false) {
