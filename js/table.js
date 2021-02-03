@@ -14,7 +14,7 @@ export class Table extends HTMLElement {
 
   connectedCallback() {
     this.tableSheet = this.tableSheet;
-    this.cache = new Cache(this.tableSheet);
+    this.cache = new Cache(this.columns);
     this.saveToLocalStorage();
     this.renderTable();
     this.renderRecordCount();
@@ -162,30 +162,50 @@ export class Table extends HTMLElement {
   }
 
   undoChanges(e) {
-    const browseHistory = () => {
-      let isUnchanged = JSON.stringify(this.tableSheet) == 
-        JSON.stringify(this.cache.value);
-
-      console.log(this.tableSheet.activeCell, this.cache.value.activeCell);
+    // This is still not perfect lol
+    const browseHistory = action => {
+      let col = 0;
+      let cell = 0
+      let tCell = null;
+      let isUnchanged = JSON.stringify(this.columns) == 
+        JSON.stringify(this.cache.value.columns);
 
       if (isUnchanged) return;
 
-      this.tableSheet = this.cache.value;
+      this.columns = this.cache.value.columns;
+
+      switch (action) {
+        case 'undo':
+          let nextIndex = this.cache.history.indexOf(this.cache.value) + 1;
+          let nextValue = this.cache.history[nextIndex];
+
+          col = nextValue.origin?.column;
+          cell = nextValue.origin?.cell;
+          break;
+      
+        case 'redo':
+          col = this.cache.value.origin?.column;
+          cell = this.cache.value.origin?.cell;
+          break;
+      }
 
       this.tableHeader.render();
       this.tableBody.render();
       this.saveToLocalStorage();
-      this.tableBody.selectCell(null, true);
+
+      tCell = this.tableBody.tbody
+        .querySelector(`[data-col-id="${col}"][data-cell-id="${cell}"]`);
+      this.tableBody.selectCell(tCell);
     }
 
     if (e.key == 'z') {
       this.cache.undo();
-      browseHistory();
+      browseHistory('undo');
     }
 
     if (e.key == 'y') {
       this.cache.redo();
-      browseHistory();
+      browseHistory('redo');
     }
   }
 

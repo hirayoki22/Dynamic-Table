@@ -3,7 +3,10 @@ export class Cache {
   index = 0;
 
   constructor(initialValue) {
-    this.history.push(JSON.parse(JSON.stringify(initialValue)));
+    this.history.push({
+      columns: JSON.parse(JSON.stringify(initialValue)),
+      origin: null
+    });
   }
 
   get value() {

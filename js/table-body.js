@@ -255,7 +255,10 @@ export class TableBody {
         .then(date => {
           input.value = date;
           editEnd();
-          this.table.cache.updateValue(this.table.tableSheet);
+          this.table.cache.updateValue({
+            columns: this.table.columns,
+            origin: { column: column.id, cell: cell.id }
+          });
       });
     }
 
@@ -263,7 +266,10 @@ export class TableBody {
       if (e.key == 'Enter') {
         selectNextCell();
         editEnd();
-        this.table.cache.updateValue(this.table.tableSheet);
+        this.table.cache.updateValue({
+          columns: this.table.columns,
+          origin: { column: column.id, cell: cell.id }
+        });
       }
       else if (e.key == 'Escape') editEnd(true);
     });
