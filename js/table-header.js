@@ -285,10 +285,12 @@ export class TableHeader {
         </div>`;
       existingRows.forEach((row, index) => row.innerHTML += `
         <div 
-        class="cell ${prop.alignment} ${!prop.editable ? 'non-editable' : ''}" 
+        class="cell" 
+        data-alignment="${prop.alignment}"
         data-col-id="${id}" 
         data-cell-id="${index + 1}"
-        data-format="${prop.format}">
+        data-format="${prop.format}"
+        ${!prop.editable ? 'data-locked' : ''}>
           <span class="cell-value"></span>
         </div>`);
       
