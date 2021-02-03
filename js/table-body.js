@@ -3,6 +3,7 @@ import { Calendar } from './calendar.js';
 
 export class TableBody {
   calendar = new Calendar();
+  activeCell = { colId: null, cellId: null };
   isEditing = false;
 
   constructor(table = new Table) {
@@ -114,11 +115,13 @@ export class TableBody {
     if (!target && !lastSelected) return;
 
     if (lastSelected) {
-      let { colId, cellId } = this.table.activeCell;
+      if (!this.activeCell.colId) return;
+
+      let { colId, cellId } = this.activeCell;
       target = this.table.tableBody.tbody
         .querySelector(`[data-col-id="${colId}"][data-cell-id="${cellId}"]`);
     }
-
+    
     this.cellSelected = true;
     this.rows = [...this.tbody.children];
     this.cells = [...this.tbody.querySelectorAll('.cell')];
@@ -130,11 +133,10 @@ export class TableBody {
     this.cells.forEach(cell => cell.removeAttribute('data-selected'));
     target.setAttribute('data-selected', '');
 
-    this.table.tableSheet.activeCell = {
+    this.activeCell = {
       colId: target.dataset.colId,
       cellId: target.dataset.cellId,
     }
-    // this.table.saveToLocalStorage();
 
     // Prevent insta type on cells on blur
     document.onkeydown = e => {

@@ -15,11 +15,12 @@ export class Table extends HTMLElement {
   connectedCallback() {
     this.tableSheet = this.tableSheet;
     this.cache = new Cache(this.columns);
-    this.saveToLocalStorage();
     this.renderTable();
     this.renderRecordCount();
     this.renderPaginationBtns();
     this.eventHandlers();
+
+    this.saveToLocalStorage();
   }
 
   get columns() {
@@ -62,14 +63,6 @@ export class Table extends HTMLElement {
     return this.tableSheet.filterBy.order;
   }
 
-  get activeCell() {
-    return this.tableSheet.activeCell;
-  }
-
-  set activeCell(newValue) {
-    return this.tableSheet.activeCell = newValue;
-  }
-
   eventHandlers() {
     this.sheetTitle.addEventListener('keyup', () => this.onTitleChange());
     this.actionsButtons.addEventListener('click', e => this.onActionClick(e))
@@ -93,7 +86,6 @@ export class Table extends HTMLElement {
     this.addRowButton = this.app.querySelector('[data-add-row]');
     this.logButton = this.app.querySelector('[data-records]');
     this.paginationArea = document.createElement('section');
-
     this.sheetTitle.textContent = this.tableSheet.title;
     this.style.height = `calc(32px + 25px * ${this.pageRowLimit})`;
     this.append(this.tableHeader.thead, this.tableBody.tbody);
@@ -162,11 +154,10 @@ export class Table extends HTMLElement {
   }
 
   undoChanges(e) {
-    // This is still not perfect lol
     const browseHistory = action => {
-      let col = 0;
-      let cell = 0
-      let tCell = null;
+      let colId = 0;
+      let cellId = 0
+      let cell = null;
       let isUnchanged = JSON.stringify(this.columns) == 
         JSON.stringify(this.cache.value.columns);
 
@@ -179,13 +170,13 @@ export class Table extends HTMLElement {
           let nextIndex = this.cache.history.indexOf(this.cache.value) + 1;
           let nextValue = this.cache.history[nextIndex];
 
-          col = nextValue.origin?.column;
-          cell = nextValue.origin?.cell;
+          colId = nextValue.origin?.column;
+          cellId = nextValue.origin?.cell;
           break;
       
         case 'redo':
-          col = this.cache.value.origin?.column;
-          cell = this.cache.value.origin?.cell;
+          colId = this.cache.value.origin?.column;
+          cellId = this.cache.value.origin?.cell;
           break;
       }
 
@@ -193,9 +184,10 @@ export class Table extends HTMLElement {
       this.tableBody.render();
       this.saveToLocalStorage();
 
-      tCell = this.tableBody.tbody
-        .querySelector(`[data-col-id="${col}"][data-cell-id="${cell}"]`);
-      this.tableBody.selectCell(tCell);
+      cell = this.tableBody.tbody
+        .querySelector(`[data-col-id="${colId}"][data-cell-id="${cellId}"]`);
+      
+      if (cell) this.tableBody.selectCell(cell);
     }
 
     if (e.key == 'z') {
