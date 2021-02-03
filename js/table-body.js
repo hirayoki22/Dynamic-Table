@@ -278,7 +278,7 @@ export class TableBody {
 
     document.onclick = e => {
       if (e.target.closest('.cell') && (e.target.closest('.cell') !== target)) {
-        editEnd(true);
+        editEnd();
         document.onclick = null;
       }
     }
