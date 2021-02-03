@@ -10,7 +10,14 @@ const renderApp = () => {
   app.className = 'app-body';
   app.innerHTML = `
   <header class="app-header">
-    <h3 class="sheet-title" name="sheet-title" contentEditable></h3>
+    <div class="sheet-title">
+      <div class="sheet-title-label">
+        <span class="sheet-title-label-inner"></span>
+      </div>
+      <input class="sheet-title-input" 
+             type="text" name="sheet-title" aria-label="Rename"
+             spellcheck="false" maxlength="58"> 
+    </div>
     <div class="action-buttons">
       <button type="button" data-action="add-column">Add Column</button>
       <button type="button" data-action="add-row">Add Row</button>
@@ -57,3 +64,5 @@ const loadTable = (startNew = false) => {
     loadTable(true);
   }
 })();
+
+

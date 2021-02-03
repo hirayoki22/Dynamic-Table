@@ -3,28 +3,57 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+  color: $color-text-primary;
 
   .sheet-title {
-    display: inline-block;
+    position: relative;
+    max-width: 600px;
+    height: auto;
     margin-right: 5rem;
-    color: $color-text-primary;
-    font-size: 1.1rem;
+    font-size: 18px;
     font-weight: 400;
-    white-space: nowrap;
-    padding: 0.15rem;
-    border: 1px solid transparent;
-    border-radius: $border-radius;
-    transition: border-color .3s ease,
-                outline-color .2s ease;
-    outline-color: transparent;
+    overflow: hidden;
 
-    &:hover {
-      border-color: $color-tertiary;
+    &-label {
+      position: absolute;
+      visibility: hidden;
+      top: 0;
+      left: 0;
+      width: auto;
+      height: 100%;
+      padding: 2px 8px;
+      font-family: inherit;
+      font-weight: inherit;
+      z-index: 0;
+      
+      &-inner {
+        font-weight: inherit;
+        white-space: pre;
+      }
     }
 
-    &:active {
-      outline-style: auto;
-      outline-color: $color-tertiary;
+    &-input {
+      position: relative;
+      display: inline-block;
+      padding: 2px 6px;
+      color: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      border: 1px solid transparent;
+      border-radius: $border-radius;
+      transition: border-color .3s ease,
+                  outline-color .2s ease;
+      outline-color: transparent;
+      z-index: 1;
+  
+      &:hover {
+        border-color: $color-tertiary;
+      }
+  
+      &:focus {
+        outline-style: auto;
+        outline-color: $color-tertiary;
+      }
     }
   }
 

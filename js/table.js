@@ -15,11 +15,13 @@ export class Table extends HTMLElement {
   connectedCallback() {
     this.tableSheet = this.tableSheet;
     this.cache = new Cache(this.columns);
+
+    this.onInit();
+    this.setSheetTitle();
     this.renderTable();
     this.renderRecordCount();
     this.renderPaginationBtns();
     this.eventHandlers();
-
     this.saveToLocalStorage();
   }
 
@@ -64,7 +66,8 @@ export class Table extends HTMLElement {
   }
 
   eventHandlers() {
-    this.sheetTitle.addEventListener('keyup', () => this.onTitleChange());
+    this.sheetTitle.addEventListener('input', () => this.setSheetTitle(true));
+    this.sheetTitle.addEventListener('change', () => this.onSheetTitleChange());
     this.actionsButtons.addEventListener('click', e => this.onActionClick(e))
     this.paginationArea.addEventListener('click', e => this.onPageNavClick(e.target));
   }
@@ -74,19 +77,42 @@ export class Table extends HTMLElement {
     localStorage.setItem('dynamic-table', JSON.stringify(this.tableSheet));
   }
 
-  renderTable() {
-    this.className = 'table';
-    this.tableHeader = new TableHeader(this);
-    this.tableBody = new TableBody(this);
+  onInit() {
     this.app = document.querySelector('.app-body');
     this.sheetTitle = document.querySelector('.sheet-title');
+    this.sheetTitleLabel = this.sheetTitle.firstElementChild;
+    this.sheetTitleInput = this.sheetTitle.lastElementChild;
     this.bottomContent = this.app.querySelector('.app-cta');
     this.actionsButtons = this.app.querySelector('.action-buttons');
     this.addColButton = this.app.querySelector('[data-add-column]');
     this.addRowButton = this.app.querySelector('[data-add-row]');
     this.logButton = this.app.querySelector('[data-records]');
+
+    this.sheetTitleLabel.firstElementChild.textContent = this.tableSheet.title;
+  }
+
+  setSheetTitle(reload = false) {    
+    if (!reload) {
+      this.sheetTitleLabel.firstElementChild.textContent = this.tableSheet.title;
+      this.sheetTitleInput.value = this.tableSheet.title;
+    } else {
+      this.sheetTitleLabel.firstElementChild.textContent = 
+        this.sheetTitleInput.value;
+    }
+    this.sheetTitleInput.style.width = `${this.sheetTitleLabel.clientWidth}px`;
+  }
+
+  onSheetTitleChange() {
+    this.tableSheet.title = this.sheetTitleInput.value;
+    this.saveToLocalStorage();
+  }
+
+  renderTable() {
+    this.className = 'table';
+    this.tableHeader = new TableHeader(this);
+    this.tableBody = new TableBody(this);    
     this.paginationArea = document.createElement('section');
-    this.sheetTitle.textContent = this.tableSheet.title;
+    
     this.style.height = `calc(32px + 25px * ${this.pageRowLimit})`;
     this.append(this.tableHeader.thead, this.tableBody.tbody);
   }
