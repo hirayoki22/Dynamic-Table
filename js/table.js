@@ -1,3 +1,4 @@
+import { SheetModel } from './table-sheet.model.js';
 import { TableForm } from './table-form.js';
 import { TableBody } from './table-body.js';
 import { TableHeader } from './table-header.js';
@@ -13,7 +14,7 @@ export class Table extends HTMLElement {
   }
 
   connectedCallback() {
-    this.tableSheet = this.tableSheet;
+    this.tableSheet = this.tableSheet || SheetModel;
     this.cache = new Cache(this.columns);
 
     this.onInit();
